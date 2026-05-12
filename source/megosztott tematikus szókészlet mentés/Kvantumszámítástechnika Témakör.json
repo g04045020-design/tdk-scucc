@@ -1,0 +1,269 @@
+{
+  "szokeszlet_nev": "Kvantumszámítástechnika Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Qubit",
+      "jelentes1": "kvantumbit",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kvantumszámítógép alapegysége, amely egyszerre lehet 0 és 1 állapotban szuperpozíció révén.",
+      "szoveg_kontextus": "Egy qubit információtárolási képessége meghaladja a klasszikus bitét a szuperpozíció miatt."
+    },
+    {
+      "idegen_szo": "Superposition",
+      "jelentes1": "szuperpozíció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kvantumállapot több lehetséges állapot egyidejű fennállása.",
+      "szoveg_kontextus": "A superposition teszi lehetővé, hogy egy kvantumszámítógép egyszerre több megoldást dolgozzon fel."
+    },
+    {
+      "idegen_szo": "Entanglement",
+      "jelentes1": "összefonódás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Két vagy több kvantumrészecske állapota szorosan összekapcsolódik, függetlenül a távolságtól.",
+      "szoveg_kontextus": "Az entanglement révén a kvantumbitek kölcsönösen befolyásolják egymást."
+    },
+    {
+      "idegen_szo": "Quantum gate",
+      "jelentes1": "kvantumkapu",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan művelet, amely kvantumbitek állapotát változtatja meg a kvantumlogika szerint.",
+      "szoveg_kontextus": "A quantum gate-ek adják a kvantumalgoritmusok alapvető műveleteit."
+    },
+    {
+      "idegen_szo": "Hadamard gate",
+      "jelentes1": "Hadamard-kapu",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kvantumkapu, amely szuperpozíciót hoz létre egy kvantumbitben.",
+      "szoveg_kontextus": "A Hadamard gate alkalmazása után a qubit egyenlő valószínűséggel 0 vagy 1 állapotban mérhető."
+    },
+    {
+      "idegen_szo": "Pauli-X gate",
+      "jelentes1": "Pauli-X kapu",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kvantumkapu, amely logikai NOT műveletet hajt végre kvantumbiten.",
+      "szoveg_kontextus": "A Pauli-X gate megfordítja a qubit állapotát 0-ról 1-re vagy fordítva."
+    },
+    {
+      "idegen_szo": "Pauli-Z gate",
+      "jelentes1": "Pauli-Z kapu",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Fázisfordító kvantumkapu, amely megváltoztatja a qubit állapotának fázisát.",
+      "szoveg_kontextus": "A Pauli-Z gate a szuperpozícióban lévő állapot relatív fázisát módosítja."
+    },
+    {
+      "idegen_szo": "CNOT gate",
+      "jelentes1": "feltételes NOT kapu",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Két qubitre ható kapu, amely a második qubitet invertálja, ha az első qubit 1 állapotban van.",
+      "szoveg_kontextus": "A CNOT gate kulcsfontosságú az entanglement létrehozásában."
+    },
+    {
+      "idegen_szo": "Quantum circuit",
+      "jelentes1": "kvantumáramkör",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kvantumkapuk sorozata, amely egy kvantumalgoritmust valósít meg.",
+      "szoveg_kontextus": "A quantum circuit ábrázolja a kvantumbitek és kapuk kapcsolódását."
+    },
+    {
+      "idegen_szo": "Quantum algorithm",
+      "jelentes1": "kvantumalgoritmus",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan eljárás, amely kvantummechanikai jelenségeket használ számítási feladat megoldására.",
+      "szoveg_kontextus": "A Shor's algorithm egy híres quantum algorithm a faktorizációhoz."
+    },
+    {
+      "idegen_szo": "Shor's algorithm",
+      "jelentes1": "Shor-algoritmus",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kvantumalgoritmus, amely hatékonyan faktorizál nagy számokat.",
+      "szoveg_kontextus": "A Shor's algorithm veszélyezteti a jelenlegi RSA titkosítást."
+    },
+    {
+      "idegen_szo": "Grover's algorithm",
+      "jelentes1": "Grover-algoritmus",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kvantumalgoritmus, amely gyorsítja az adatbázis-keresést.",
+      "szoveg_kontextus": "A Grover's algorithm négyzetgyökös sebességnövekedést ér el a klasszikus kereséshez képest."
+    },
+    {
+      "idegen_szo": "Quantum decoherence",
+      "jelentes1": "kvantumdekoherencia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kvantumállapot környezeti hatások miatti elvesztése.",
+      "szoveg_kontextus": "A quantum decoherence a kvantumszámítógépek egyik fő akadálya."
+    },
+    {
+      "idegen_szo": "Quantum error correction",
+      "jelentes1": "kvantum hibajavítás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Módszer a kvantumállapotok hibáinak kijavítására a zaj ellenére.",
+      "szoveg_kontextus": "A quantum error correction lehetővé teszi a stabil kvantumszámításokat."
+    },
+    {
+      "idegen_szo": "Bloch sphere",
+      "jelentes1": "Bloch-gömb",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Geometriai ábrázolás egy qubit állapotának szemléltetésére.",
+      "szoveg_kontextus": "A Bloch sphere segít megérteni a kvantumbit forgatásait."
+    },
+    {
+      "idegen_szo": "Quantum annealing",
+      "jelentes1": "kvantumkioltás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Optimalizációs probléma megoldása kvantummechanikai állapotok fokozatos változtatásával.",
+      "szoveg_kontextus": "A D-Wave gépei quantum annealing technológiát alkalmaznak."
+    },
+    {
+      "idegen_szo": "Adiabatic quantum computing",
+      "jelentes1": "adiabatikus kvantumszámítás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Számítás lassú kvantumállapot-változtatással, az energia minimum keresésével.",
+      "szoveg_kontextus": "Az adiabatic quantum computing különbözik a kapu-alapú modellől."
+    },
+    {
+      "idegen_szo": "Quantum supremacy",
+      "jelentes1": "kvantumfölény",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az a pont, amikor a kvantumszámítógép gyorsabb, mint bármely klasszikus gép.",
+      "szoveg_kontextus": "A Google 2019-ben bejelentette a quantum supremacy elérését."
+    },
+    {
+      "idegen_szo": "No-cloning theorem",
+      "jelentes1": "nem-klónozhatósági tétel",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Elmélet, miszerint ismeretlen kvantumállapot pontos másolása lehetetlen.",
+      "szoveg_kontextus": "A no-cloning theorem kulcsfontosságú a kvantumkriptográfiában."
+    },
+    {
+      "idegen_szo": "Quantum teleportation",
+      "jelentes1": "kvantumteleportáció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Információ átvitele kvantumállapotok segítségével, fizikai mozgatás nélkül.",
+      "szoveg_kontextus": "A quantum teleportation az összefonódást használja adatátvitelre."
+    },
+    {
+      "idegen_szo": "Bell's theorem",
+      "jelentes1": "Bell-tétel",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Bizonyítja, hogy a kvantummechanika nem-lokális jelenségeket ír le.",
+      "szoveg_kontextus": "Bell's theorem kísérleti igazolása megerősíti az összefonódás valóságát."
+    },
+    {
+      "idegen_szo": "Quantum Fourier Transform",
+      "jelentes1": "kvantum Fourier-transzformáció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kvantumalgoritmus része, amely Fourier-transzformációt végez kvantumállapotokon.",
+      "szoveg_kontextus": "A Quantum Fourier Transform kulcsszerepet játszik a Shor's algorithm-ban."
+    },
+    {
+      "idegen_szo": "Measurement",
+      "jelentes1": "mérés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kvantumállapot összeomlása egy meghatározott klasszikus értékre.",
+      "szoveg_kontextus": "A measurement során a qubit állapota 0 vagy 1 értéket vesz fel."
+    },
+    {
+      "idegen_szo": "Quantum register",
+      "jelentes1": "kvantumregiszter",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Több kvantumbitből álló egység, amely közösen tárol és dolgoz fel információt.",
+      "szoveg_kontextus": "A quantum register mérete meghatározza a számítási kapacitást."
+    }
+  ]
+}

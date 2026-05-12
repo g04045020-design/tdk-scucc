@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statisztikák - Szó és Fogalom Tanuló Környezet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="statistics-page">
+    <div class="container">
+        <!-- Breadcrumb navigáció -->
+        <div class="breadcrumb">
+            <a href="/">🏠 Főoldal</a>
+            <span class="separator">/</span>
+            <a href="/dashboard">Dashboard</a>
+            <span class="separator">/</span>
+            <span>Statisztikák</span>
+        </div>
+        
+        <div class="header">
+            <h1>📊 Statisztikák</h1>
+            <div class="user-info">
+                <div class="user-name">{{ user_name }}</div>
+                <div class="user-email">{{ user_email }}</div>
+                <a href="/logout" class="logout-btn">Kijelentkezés</a>
+            </div>
+        </div>
+        <div id="statistics-wrapper" class="statistics-wrapper">
+            <section id="top_words-section" class="statistics-section" style="display:none"></section>
+            <section id="activity-section" class="statistics-section" style="display:none"></section>
+            <section id="charts-container" class="statistics-section" style="display:none"></section>
+            <section id="progress-section" class="statistics-section" style="display:none"></section>
+            <section id="error_analysis-section" class="statistics-section" style="display:none"></section>
+            <section id="confidence_analysis-section" class="statistics-section" style="display:none"></section>
+            <section id="ai_prediction-section" class="statistics-section" style="display:none"></section>
+            <section class="placeholder-content" id="placeholder-content" style="display:none"></section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // --- Top Words szekció ---
+    // Módosítja: #top_words-section
+    function renderTopWordsSection() {
+        const section = document.getElementById('top_words-section');
+        fetch('/api/statistics/top-words')
+            .then(resp => resp.json())
+            .then(wordsData => {
+                let html = '<h2>Legjobban ismert szavak</h2>';
+                html += '<h3>Top 5 legkevésbé ismert szó</h3>';
+                if (wordsData.top_best && wordsData.top_best.length > 0) {
+                    html += '<ol>';
+                    wordsData.top_best.forEach(szo => {
+                        html += `<li><b>${szo.idegen_szo}</b> – ${szo.jelentesek.join(', ')} <span class='pontszam'>(Pontszám: ${szo.pontszam})</span></li>`;
+                    });
+                    html += '</ol>';
+                } else {
+                    html += '<div>Nincs adat.</div>';
+                }
+                html += '<h3>Top 5 legjobban ismert szó</h3>';
+                if (wordsData.top_worst && wordsData.top_worst.length > 0) {
+                    html += '<ol>';
+                    wordsData.top_worst.forEach(szo => {
+                        html += `<li><b>${szo.idegen_szo}</b> – ${szo.jelentesek.join(', ')} <span class='pontszam'>(Pontszám: ${szo.pontszam})</span></li>`;
+                    });
+                    html += '</ol>';
+                } else {
+                    html += '<div>Nincs adat.</div>';
+                }
+                section.innerHTML = html;
+                section.style.display = '';
+            });
+    }
+    // --- Activity szekció ---
+    // Módosítja: #activity-section és #charts-container
+    function renderActivitySection() {
+        const section = document.getElementById('activity-section');
+        const charts = document.getElementById('charts-container');
+        fetch('/api/statistics/activity')
+            .then(resp => resp.json())
+            .then(activityData => {
+                // Összes szókészlet összegyűjtése
+                const allTopics = Array.from(new Set([
+                    ...Object.keys(activityData.daily.activity),
+                    ...Object.keys(activityData.weekly.activity),
+                    ...Object.keys(activityData.monthly.activity)
+                ]));
+                
+                // HTML generálása minden szókészlethez külön grafikonnal
+                let html = '<h2>Aktivitási statisztikák</h2>';
+                
+                // Minden szókészlethez külön grafikon
+                allTopics.forEach((topic, index) => {
+                    html += `<div class="vocabulary-chart-container">`;
+                    html += `<h3>${topic}</h3>`;
+                    html += `<div class="chart-container">`;
+                    html += `<canvas id="activity-bar-chart-${index}" class="activity-bar-chart", width=700, height=350></canvas>`;
+                    html += `</div>`;
+                    html += `</div>`;
+                });
+                
+                section.innerHTML = html;
+                section.style.display = '';
+                
+                // Minden szókészlethez külön grafikon létrehozása
+                allTopics.forEach((topic, index) => {
+                    const barCtx = document.getElementById(`activity-bar-chart-${index}`).getContext('2d');
+                    
+                    const barData = {
+                        labels: ['Napi', 'Heti', 'Havi'],
+                        datasets: [
+                            {
+                                label: 'Beírásos',
+                                data: [
+                                    activityData.daily.activity[topic]?.beirasos || 0,
+                                    activityData.weekly.activity[topic]?.beirasos || 0,
+                                    activityData.monthly.activity[topic]?.beirasos || 0
+                                ],
+                                backgroundColor: 'rgba(255, 99, 132, 0.8)'
+                            },
+                            {
+                                label: 'Kiválasztásos',
+                                data: [
+                                    activityData.daily.activity[topic]?.kivalasztasos || 0,
+                                    activityData.weekly.activity[topic]?.kivalasztasos || 0,
+                                    activityData.monthly.activity[topic]?.kivalasztasos || 0
+                                ],
+                                backgroundColor: 'rgba(54, 162, 235, 0.8)'
+                            },
+                            {
+                                label: 'Párosításos',
+                                data: [
+                                    activityData.daily.activity[topic]?.parositasos || 0,
+                                    activityData.weekly.activity[topic]?.parositasos || 0,
+                                    activityData.monthly.activity[topic]?.parositasos || 0
+                                ],
+                                backgroundColor: 'rgba(255, 205, 86, 0.8)'
+                            }
+                        ]
+                    };
+                    
+                    
+                    window[`activityBarChart${index}`] = new Chart(barCtx, {
+                        type: 'bar',
+                        data: barData,
+                        options: {
+                            responsive: true,
+                            plugins: { 
+                                legend: { 
+                                    position: 'top'
+                                } 
+                            },
+                            scales: { 
+                                x: { 
+                                    stacked: false,
+                                    title: {
+                                        display: true,
+                                        text: 'Időszakok'
+                                    }
+                                }, 
+                                y: { 
+                                    stacked: false,
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Aktivitások száma'
+                                    }
+                                } 
+                            }
+                        }
+                    });
+                });
+                
+                // 30 napos aktivitás vonaldiagram
+                charts.innerHTML = `<h2>30 napos aktivitás lebontás (szókészlet függetlenül)</h2><div class='chart-container'><canvas id='activity-line-chart'></canvas></div>`;
+                charts.style.display = '';
+                const lineCtx = document.getElementById('activity-line-chart').getContext('2d');
+                const lineLabels = activityData.history.map(d => d.date);
+                const lineData = activityData.history.map(d => d.count);
+                if (window.activityLineChart) window.activityLineChart.destroy();
+                window.activityLineChart = new Chart(lineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: lineLabels,
+                        datasets: [{
+                            label: 'Napi összes aktivitás',
+                            data: lineData,
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            fill: true,
+                            tension: 0.2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } },
+                        scales: { x: { display: true }, y: { beginAtZero: true } }
+                    }
+                });
+            });
+    }
+    // --- Progress szekció ---
+    // Módosítja: #progress-section
+    function renderProgressSection() {
+        const section = document.getElementById('progress-section');
+        section.innerHTML = `<h2>Eredmények időbeli alakulása</h2>
+            <div class='progress-controls'>
+                <label for='progress-interval'>Időintervallum:</label>
+                <select id='progress-interval'>
+                    <option value='daily'>Napi</option>
+                    <option value='weekly' selected>Heti</option>
+                    <option value='monthly'>Havi</option>
+                </select>
+            </div>
+            <div class='chart-container'><canvas id='progress-chart'></canvas></div>`;
+        section.style.display = '';
+        function loadProgressChart(interval) {
+            fetch(`/api/statistics/progress?interval=${interval}`)
+                .then(resp => resp.json())
+                .then(data => {
+                    // Dátumok formázása yyyy-mm-dd
+                    let labels = data.labels.map(lab => {
+                        if (/^\d{4}-\d{2}-\d{2}$/.test(lab)) return lab;
+                        if (/^\d{4}-W\d{2}$/.test(lab)) {
+                            const [year, week] = lab.split('-W');
+                            const simple = (y, w) => {
+                                const d = new Date(y, 0, 1 + (w - 1) * 7);
+                                const day = d.getDay();
+                                const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+                                d.setDate(diff);
+                                return d;
+                            };
+                            const d = simple(Number(year), Number(week));
+                            return d.toISOString().slice(0, 10);
+                        }
+                        if (/^\d{4}-\d{2}$/.test(lab)) return lab + '-01';
+                        return lab;
+                    });
+                    const ctx = document.getElementById('progress-chart').getContext('2d');
+                    if (window.progressChart) window.progressChart.destroy();
+                    window.progressChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Átlagos pontszám',
+                                    data: data.avg_points,
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                                    yAxisID: 'y',
+                                    fill: false,
+                                    tension: 0.2,
+                                    spanGaps: true
+                                },
+                                {
+                                    label: 'Helyes mezők aránya (%)',
+                                    data: data.correct_percent,
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                    yAxisID: 'y1',
+                                    fill: false,
+                                    tension: 0.2,
+                                    spanGaps: true
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            interaction: { mode: 'index', intersect: false },
+                            stacked: false,
+                            plugins: {
+                                legend: { position: 'top' },
+                                tooltip: { enabled: true }
+                            },
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'left',
+                                    title: { display: true, text: 'Átlagos pontszám' },
+                                    min: -65,
+                                    max: 75
+                                },
+                                y1: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'right',
+                                    title: { display: true, text: 'Helyes mezők aránya (%)' },
+                                    min: 0,
+                                    max: 100,
+                                    grid: { drawOnChartArea: false }
+                                },
+                                x: {
+                                    ticks: {
+                                        callback: function(value, index, values) {
+                                            return this.getLabelForValue(value);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+        }
+        const intervalSelect = section.querySelector('#progress-interval');
+        loadProgressChart(intervalSelect.value);
+        intervalSelect.addEventListener('change', function() {
+            loadProgressChart(this.value);
+        });
+    }
+
+    // --- Error Analysis szekció ---
+    // Módosítja: #error_analysis-section
+    function renderErrorAnalysisSection() {
+        const section = document.getElementById('error_analysis-section');
+        let currentInterval = 'weekly';
+        
+        function loadErrorData() {
+            fetch(`/api/statistics/error-analysis?interval=${currentInterval}`)
+                .then(resp => resp.json())
+                .then(errorData => {
+                    let html = '<h2>Hibaelemzés</h2>';
+                    html += '<div class="progress-controls">';
+                    html += '<label for="error-interval">Időintervallum:</label>';
+                    html += '<select id="error-interval">';
+                    html += '<option value="weekly" ' + (currentInterval === 'weekly' ? 'selected' : '') + '>Elmúlt hét</option>';
+                    html += '<option value="monthly" ' + (currentInterval === 'monthly' ? 'selected' : '') + '>Elmúlt hónap</option>';
+                    html += '</select>';
+                    html += '</div>';
+                    
+                    // Top 5 legtöbbször elrontott szó
+                    html += '<h3>Top 5 legtöbbször elrontott szó</h3>';
+                    if (errorData.top_errors && errorData.top_errors.length > 0) {
+                        html += '<ol>';
+                        errorData.top_errors.forEach((error, index) => {
+                            html += `<li><b>${error.idegen_szo}</b> – ${error.jelentes1} <span class='error-count'>(Hibák: ${error.hiba_szam})</span></li>`;
+                        });
+                        html += '</ol>';
+                    } else {
+                        html += '<div>Nincs adat.</div>';
+                    }
+                    
+                    // Hibák típus szerint (oszlopdiagram)
+                    html += '<h3>Hibák típus szerint</h3>';
+                    html += '<div class="chart-container">';
+                    html += '<canvas id="error-types-chart"></canvas>';
+                    html += '</div>';
+                    
+                    // Hibák időbeli trendje (vonaldiagram)
+                    html += '<h3>Hibák időbeli trendje</h3>';
+                    html += '<div class="chart-container">';
+                    html += '<canvas id="error-trend-chart"></canvas>';
+                    html += '</div>';
+                    
+                    section.innerHTML = html;
+                    section.style.display = '';
+                    
+                    // Hibák típus szerint oszlopdiagram
+                    const ctx1 = document.getElementById('error-types-chart').getContext('2d');
+                    new Chart(ctx1, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Idegen szó', 'Jelentés', 'Fonetika/Leírás'],
+                            datasets: [{
+                                label: 'Hibák száma',
+                                data: [errorData.error_types.idegen_szo, errorData.error_types.jelentes, errorData.error_types.fonetika],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.8)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(255, 205, 86, 0.8)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 205, 86, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Hibák száma'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Hibák időbeli trendje vonaldiagram
+                    const ctx2 = document.getElementById('error-trend-chart').getContext('2d');
+                    new Chart(ctx2, {
+                        type: 'line',
+                        data: {
+                            labels: errorData.history.map(item => item.date),
+                            datasets: [{
+                                label: 'Hibás mezők száma',
+                                data: errorData.history.map(item => item.errors),
+                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                x: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Dátum'
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Hibás mezők száma'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Interval változás eseménykezelő
+                    document.getElementById('error-interval').addEventListener('change', function(e) {
+                        currentInterval = e.target.value;
+                        loadErrorData();
+                    });
+                });
+        }
+        
+        loadErrorData();
+    }
+
+    // --- Confidence Analysis szekció ---
+    // Módosítja: #confidence_analysis-section
+    function renderConfidenceAnalysisSection() {
+        const section = document.getElementById('confidence_analysis-section');
+        let currentInterval = 'weekly';
+        
+        function loadConfidenceData() {
+            fetch(`/api/statistics/confidence-analysis?interval=${currentInterval}`)
+                .then(resp => resp.json())
+                .then(confidenceData => {
+                    let html = '<h2>Önbizalmi elemzés</h2>';
+                    html += '<div class="progress-controls">';
+                    html += '<label for="confidence-interval">Időintervallum:</label>';
+                    html += '<select id="confidence-interval">';
+                    html += '<option value="weekly" ' + (currentInterval === 'weekly' ? 'selected' : '') + '>Elmúlt hét</option>';
+                    html += '<option value="monthly" ' + (currentInterval === 'monthly' ? 'selected' : '') + '>Elmúlt hónap</option>';
+                    html += '</select>';
+                    html += '</div>';
+                    
+                    // Biztosság vs Teljesítmény diagram
+                    html += '<h3>Biztosság vs Teljesítmény</h3>';
+                    html += '<div class="chart-container">';
+                    html += '<canvas id="confidence-chart" width="1000" height="400"></canvas>';
+                    html += '</div>';
+                    
+                    section.innerHTML = html;
+                    section.style.display = '';
+                    
+                    // Biztosság vs Teljesítmény vonaldiagram
+                    const ctx = document.getElementById('confidence-chart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: confidenceData.history.map(item => item.date),
+                            datasets: [
+                                {
+                                    label: 'Biztosság',
+                                    data: confidenceData.history.map(item => item.confidence),
+                                    borderColor: 'rgb(54, 162, 235)',
+                                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                                    fill: false,
+                                    tension: 0.2
+                                },
+                                {
+                                    label: 'Teljesítmény',
+                                    data: confidenceData.history.map(item => item.performance),
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                    fill: false,
+                                    tension: 0.2
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            interaction: { mode: 'index', intersect: false },
+                            plugins: {
+                                legend: { position: 'top' },
+                                tooltip: { enabled: true }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    title: {
+                                        display: true,
+                                        text: 'Pontszám (0-100)'
+                                    }
+                                },
+                                x: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Dátum'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Interval változás eseménykezelő
+                    document.getElementById('confidence-interval').addEventListener('change', function(e) {
+                        currentInterval = e.target.value;
+                        loadConfidenceData();
+                    });
+                });
+        }
+        
+        loadConfidenceData();
+    }
+
+    // --- AI Prediction szekció ---
+    // Módosítja: #ai_prediction-section
+    function renderAIPredictionSection() {
+        const section = document.getElementById('ai_prediction-section');
+        
+        fetch('/api/statistics/ai-prediction')
+            .then(resp => resp.json())
+            .then(predictionData => {
+                let html = '<h2>AI Predikció</h2>';
+                
+                // Általános trend
+                html += '<div class="ai-overview">';
+                html += '<h3>Áttekintés</h3>';
+                html += `<p><strong>Általános trend:</strong> ${predictionData.overall_trend}</p>`;
+                html += `<p><strong>Elemzett szavak:</strong> ${predictionData.total_words}</p>`;
+                html += '</div>';
+                
+                // Predikciós grafikon
+                if (predictionData.predictions && predictionData.predictions.length > 0) {
+                    html += '<h3>Pontszám Predikciók (30 nap múlva)</h3>';
+                    html += '<div class="chart-container">';
+                    html += '<canvas id="prediction-chart"></canvas>';
+                    html += '</div>';
+                    
+                    // Top 10 legnagyobb változású szó
+                    const sortedPredictions = predictionData.predictions
+                        .sort((a, b) => Math.abs(b.predicted_score - b.current_score) - Math.abs(a.predicted_score - a.current_score))
+                        .slice(0, 10);
+                    
+                    html += '<h3>Top 10 legnagyobb változású szó</h3>';
+                    html += '<div class="prediction-list">';
+                    sortedPredictions.forEach((pred, index) => {
+                        const change = pred.predicted_score - pred.current_score;
+                        const changeColor = change < 0 ? '#4CAF50' : '#f44336';
+                        const changeIcon = change < 0 ? '↘️' : '↗️';
+                        
+                        html += '<div class="prediction-item">';
+                        html += `<div class="prediction-rank">${index + 1}</div>`;
+                        html += `<div class="prediction-word">`;
+                        html += `<strong>${pred.idegen_szo}</strong>`;
+                        html += `<span class="prediction-meanings">${pred.jelentesek.join(', ')}</span>`;
+                        html += `</div>`;
+                        html += `<div class="prediction-scores">`;
+                        html += `<span class="current-score">Jelenlegi: ${pred.current_score}</span>`;
+                        html += `<span class="predicted-score" style="color: ${changeColor}">`;
+                        html += `${changeIcon} Predikció: ${pred.predicted_score}`;
+                        html += `</span>`;
+                        html += `</div>`;
+                        html += `<div class="prediction-trend">`;
+                        html += `<span class="trend-direction">${pred.trend_direction}</span>`;
+                        html += `<span class="improvement-potential">Előző pontszámhoz képest: ${Math.abs(pred.improvement_potential)}%-ot ${pred.improvement_potential < 0 ? 'Javult' : 'Romlott'} </span>`;
+                        html += `</div>`;
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+                
+                // Javaslatok
+                if (predictionData.recommendations && predictionData.recommendations.length > 0) {
+                    html += '<h3>🎯 AI Javaslatok</h3>';
+                    html += '<div class="recommendations-list">';
+                    predictionData.recommendations.forEach((rec, index) => {
+                        const priorityColor = {
+                            'magas': '#dc3545',
+                            'közepes': '#ffc107',
+                            'alacsony': '#28a745'
+                        }[rec.priority] || '#6c757d';
+                        
+                        const priorityText = {
+                            'magas': 'Sürgős',
+                            'közepes': 'Ajánlott',
+                            'alacsony': 'Javasolt'
+                        }[rec.priority] || 'Ismeretlen';
+                        
+                        html += '<div class="recommendation-item">';
+                        html += `<div class="recommendation-rank" style="background-color: ${priorityColor}">${index + 1}</div>`;
+                        html += `<div class="recommendation-word">`;
+                        html += `<strong>${rec.idegen_szo}</strong>`;
+                        html += `<span class="recommendation-meanings">${rec.jelentesek.join(', ')}</span>`;
+                        html += `</div>`;
+                        html += `<div class="recommendation-reason">`;
+                        html += `<span class="priority-badge" style="background-color: ${priorityColor}">${priorityText}</span>`;
+                        html += ` ${rec.reason}`;
+                        html += `</div>`;
+                        html += `<div class="recommendation-score">Pontszám: ${rec.current_score}</div>`;
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+                
+                if (!predictionData.predictions || predictionData.predictions.length === 0) {
+                    html += '<div class="no-data">';
+                    html += '<p>Nincs elég adat a predikcióhoz. Oldj meg több feladatot, hogy az AI tudjon javaslatokat tenni!</p>';
+                    html += '</div>';
+                }
+                
+                section.innerHTML = html;
+                section.style.display = '';
+                
+                // Predikciós grafikon létrehozása
+                if (predictionData.predictions && predictionData.predictions.length > 0) {
+                    const ctx = document.getElementById('prediction-chart').getContext('2d');
+                    const labels = predictionData.predictions.map(p => p.idegen_szo);
+                    const currentScores = predictionData.predictions.map(p => p.current_score);
+                    const predictedScores = predictionData.predictions.map(p => p.predicted_score);
+                    
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Jelenlegi pontszám',
+                                    data: currentScores,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Predikció (30 nap)',
+                                    data: predictedScores,
+                                    backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { position: 'top' },
+                                tooltip: { enabled: true }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Pontszám'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Szavak'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Hiba az AI predikció betöltésekor:', error);
+                section.innerHTML = '<h2>AI Predikció</h2><p>Hiba történt az adatok betöltésekor.</p>';
+                section.style.display = '';
+            });
+    }
+
+    // --- Placeholder szekció ---
+    // Módosítja: #placeholder-content
+    function renderPlaceholderSection() {
+        const section = document.getElementById('placeholder-content');
+        section.style.display = '';
+    }
+    // --- DOMContentLoaded: szekciók szerinti renderelés ---
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/statistics/sections')
+            .then(resp => resp.json())
+            .then(data => {
+                let found = false;
+                data.sections.forEach(section => {
+                    if (section.id === 'top_words') { renderTopWordsSection(); found = true; }
+                    if (section.id === 'activity') { renderActivitySection(); found = true; }
+                    if (section.id === 'progress') { renderProgressSection(); found = true; }
+                    if (section.id === 'error_analysis') { renderErrorAnalysisSection(); found = true; }
+                    if (section.id === 'confidence_analysis') { renderConfidenceAnalysisSection(); found = true; }
+                    if (section.id === 'ai_prediction') { renderAIPredictionSection(); found = true; }
+                });
+                if (!found) renderPlaceholderSection();
+            });
+    });
+    </script>
+    <style>
+        .statistics-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: none;
+        }
+        .statistics-section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 32px 24px 24px 24px;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .statistics-section h2 {
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 1.5em;
+        }
+        .chart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .chart-explanation {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        .chart-explanation p {
+            margin: 0 0 10px 0;
+        }
+        .chart-explanation ul {
+            margin: 0 0 10px 0;
+            padding-left: 20px;
+        }
+        .chart-explanation li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .color-indicator {
+            display: inline-block;
+            width: 20px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .progress-controls {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .progress-controls label {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        #progress-interval {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            font-size: 1em;
+        }
+        .placeholder-content {
+            background: #f8f8f8;
+            border: 1px dashed #bbb;
+            border-radius: 10px;
+            padding: 32px 24px;
+            text-align: center;
+            color: #888;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .placeholder-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .placeholder-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .placeholder-text {
+            margin-bottom: 16px;
+        }
+
+        .activity-bar-chart {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #activity-bar-chart {
+            width: 800px !important;
+            height: 350px !important;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        #error-types-chart, #error-trend-chart, #confidence-chart {
+            width: 800px !important;
+            height: 350px !important;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        .error-count {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        /* AI Prediction stílusok */
+        .ai-overview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .ai-overview h3 {
+            margin: 0 0 15px 0;
+            color: white;
+        }
+
+        .ai-overview p {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .prediction-list, .recommendations-list {
+            margin-top: 20px;
+        }
+
+        .prediction-item, .recommendation-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .prediction-rank, .recommendation-rank {
+            background: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .prediction-word, .recommendation-word {
+            flex: 1;
+        }
+
+        .prediction-word strong, .recommendation-word strong {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .prediction-meanings, .recommendation-meanings {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .prediction-scores {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+        }
+
+        .current-score {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .predicted-score {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .prediction-trend {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+            min-width: 150px;
+        }
+
+        .trend-direction {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .improvement-potential {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .recommendation-reason {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .recommendation-score {
+            font-weight: bold;
+            color: #dc3545;
+            font-size: 16px;
+        }
+
+        .priority-badge {
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .no-data p {
+            color: #666;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        #prediction-chart {
+            width: 800px !important;
+            height: 400px !important;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</body>
+</html> 

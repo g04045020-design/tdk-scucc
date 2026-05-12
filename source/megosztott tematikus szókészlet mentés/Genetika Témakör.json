@@ -1,0 +1,269 @@
+{
+  "szokeszlet_nev": "Genetika Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Genome",
+      "jelentes1": "teljes genetikai állomány",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy szervezet teljes DNS-állománya, beleértve az összes gént és nem kódoló szakaszt.",
+      "szoveg_kontextus": "Az emberi genome feltérképezése kulcsfontosságú a betegségek genetikai hátterének megértésében."
+    },
+    {
+      "idegen_szo": "Allele",
+      "jelentes1": "génváltozat",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy gén alternatív formája, amely meghatározhat különböző tulajdonságokat.",
+      "szoveg_kontextus": "Az öröklött tulajdonságokat az allele kombinációk határozzák meg."
+    },
+    {
+      "idegen_szo": "Genotype",
+      "jelentes1": "genetikai felépítés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy szervezet genetikai kódja, amely a fenotípusát befolyásolja.",
+      "szoveg_kontextus": "A genotype és a környezet kölcsönhatása alakítja ki a szervezet megjelenését."
+    },
+    {
+      "idegen_szo": "Phenotype",
+      "jelentes1": "megjelenő tulajdonságok",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A genetikai és környezeti hatások eredményeként kialakult látható jellegek összessége.",
+      "szoveg_kontextus": "A szemszín a phenotype egyik példája."
+    },
+    {
+      "idegen_szo": "Locus",
+      "jelentes1": "génhely",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A DNS egy meghatározott pozíciója, ahol egy gén vagy marker található.",
+      "szoveg_kontextus": "A mutáció a gén adott locus-án történt."
+    },
+    {
+      "idegen_szo": "Homozygous",
+      "jelentes1": "azonos allélek",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan genetikai állapot, amikor egy adott gén mindkét allélja azonos.",
+      "szoveg_kontextus": "A homozygous genotípus gyakran stabilan öröklődik."
+    },
+    {
+      "idegen_szo": "Heterozygous",
+      "jelentes1": "eltérő allélek",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan állapot, amikor egy gén két allélja különböző.",
+      "szoveg_kontextus": "A heterozygous hordozók nem mindig mutatják a betegséget."
+    },
+    {
+      "idegen_szo": "Mutation",
+      "jelentes1": "genetikai változás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A DNS szekvenciájában bekövetkező változás, amely befolyásolhatja a gén működését.",
+      "szoveg_kontextus": "A mutation okozhat öröklődő betegséget."
+    },
+    {
+      "idegen_szo": "Epigenetics",
+      "jelentes1": "génműködés szabályozása",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A génexpresszió szabályozása DNS-szekvencia megváltoztatása nélkül.",
+      "szoveg_kontextus": "Az epigenetics fontos szerepet játszik a környezeti hatások hosszú távú hatásaiban."
+    },
+    {
+      "idegen_szo": "Chromosome",
+      "jelentes1": "DNS-szál szerkezet",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Sejtosztódáskor láthatóvá váló DNS és fehérje komplex, amely géneket hordoz.",
+      "szoveg_kontextus": "Az emberi sejtekben 46 chromosome található."
+    },
+    {
+      "idegen_szo": "Karyotype",
+      "jelentes1": "kromoszóma készlet",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy szervezet kromoszómáinak rendezett ábrázolása.",
+      "szoveg_kontextus": "A karyotype elemzésével kimutathatók a kromoszóma-rendellenességek."
+    },
+    {
+      "idegen_szo": "Polygenic",
+      "jelentes1": "több gén hatása",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan tulajdonság, amelyet több gén együttesen határoz meg.",
+      "szoveg_kontextus": "A magasság polygenic öröklődésű tulajdonság."
+    },
+    {
+      "idegen_szo": "Genetic Drift",
+      "jelentes1": "véletlen genetikai változás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A populáció génfrekvenciáinak véletlenszerű változása generációról generációra.",
+      "szoveg_kontextus": "A genetic drift kis populációkban erősebb hatású."
+    },
+    {
+      "idegen_szo": "Linkage",
+      "jelentes1": "gének együtt öröklése",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Közeli gének nagyobb valószínűséggel öröklődnek együtt.",
+      "szoveg_kontextus": "A linkage analízis segít a betegséggének azonosításában."
+    },
+    {
+      "idegen_szo": "Recombination",
+      "jelentes1": "génkicserélődés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A genetikai anyag átrendeződése meiózis során.",
+      "szoveg_kontextus": "A recombination növeli a genetikai változatosságot."
+    },
+    {
+      "idegen_szo": "Gene Expression",
+      "jelentes1": "génműködés folyamata",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A genetikai információ felhasználása fehérjék vagy RNS-ek előállításához.",
+      "szoveg_kontextus": "A stressz befolyásolhatja a gene expression szintjét."
+    },
+    {
+      "idegen_szo": "Transcription",
+      "jelentes1": "DNS átírása RNS-re",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A DNS-ből messenger RNS szintézisének folyamata.",
+      "szoveg_kontextus": "A transcription a génexpresszió első lépése."
+    },
+    {
+      "idegen_szo": "Translation",
+      "jelentes1": "fehérjeszintézis",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az mRNS információjának lefordítása fehérje aminosavsorrendjére.",
+      "szoveg_kontextus": "A translation a riboszómákban történik."
+    },
+    {
+      "idegen_szo": "Codon",
+      "jelentes1": "három nukleotid egység",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Három nukleotidból álló szekvencia, amely egy aminosavat kódol.",
+      "szoveg_kontextus": "A start codon jelzi a fehérjeszintézis kezdetét."
+    },
+    {
+      "idegen_szo": "Gene Therapy",
+      "jelentes1": "génalapú kezelés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Genetikai hibák kijavítása vagy új gének bejuttatása a sejtekbe.",
+      "szoveg_kontextus": "A gene therapy új lehetőségeket nyit a ritka betegségek kezelésében."
+    },
+    {
+      "idegen_szo": "CRISPR",
+      "jelentes1": "génszerkesztési technológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Célzott DNS-módosításra alkalmas molekuláris eszköz.",
+      "szoveg_kontextus": "A CRISPR forradalmasította a genetikai kutatásokat."
+    },
+    {
+      "idegen_szo": "Gene Sequencing",
+      "jelentes1": "DNS sorrend meghatározása",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A DNS nukleotidjainak sorrendjének meghatározása laboratóriumi módszerekkel.",
+      "szoveg_kontextus": "A gene sequencing segít azonosítani a mutációkat."
+    },
+    {
+      "idegen_szo": "Plasmid",
+      "jelentes1": "kör alakú DNS",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Baktériumokban található extra-kromoszomális DNS, gyakran használt géntechnológiában.",
+      "szoveg_kontextus": "A kutatók plasmid vektorokat használnak génbeültetéshez."
+    },
+    {
+      "idegen_szo": "Exon",
+      "jelentes1": "kódoló DNS szakasz",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A gén azon része, amely fehérjét kódol és az érett mRNS-be kerül.",
+      "szoveg_kontextus": "Az exonok sorrendje meghatározza a fehérje szerkezetét."
+    }
+  ]
+}

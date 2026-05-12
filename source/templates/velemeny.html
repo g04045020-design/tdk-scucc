@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vélemény - Szó és Fogalom Tanuló Környezet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="velemeny-page">
+    <div class="container">
+        <!-- Breadcrumb navigáció -->
+        <div class="breadcrumb">
+            <a href="/">🏠 Főoldal</a>
+            <span class="separator">/</span>
+            <a href="/dashboard">Dashboard</a>
+            <span class="separator">/</span>
+            <span>Vélemény</span>
+        </div>
+        
+        <div class="header">
+            <h1>💬 Vélemény & Hibajelentés</h1>
+            <div class="user-info">
+                <div class="user-name">{{ user_name }}</div>
+                <div class="user-email">{{ user_email }}</div>
+                <a href="/logout" class="logout-btn">Kijelentkezés</a>
+            </div>
+        </div>
+
+        <!-- Flash üzenetek megjelenítése -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="velemeny-container">
+            <div class="velemeny-info">
+                <h2>Írja meg véleményét!</h2>
+                <p>Ha hibával találkoztál vagy van van valamilyen észrevételed az oldallal akkor itt ezt leírhatod.</p>
+                
+                <div class="velemeny-tips">
+                    <h3>💡 Hibajelentés esetén</h3>
+                    <ul>
+                        <li><strong>A hiba rövid leírása:</strong> Mikor fordult elő? Mit érintett? okozott-e adatveztést vagy használhatatlan működést?</li>
+                        <li><strong>A hiba előfordulási körülménye:</strong> Minek a hatására jelenkezett a hiba? Látható-e mintázat vagy csak egyszeri volt?</li>
+                        <li><strong>Hiba Kódok:</strong> Látható volt hibakód vagy leírás a hibáról? Feljesztői konzolban (f12) van megjelenő hiba? Mi volt az?</li>
+                        <li><strong>A hiba előidézésenek pontos dátuma:</strong> Mikor jelentkezett a hiba? Hónap:Nap:Óra:Perc:Másodperc (ha van pontos)</li>
+                        <li><strong>Ha a hiba komplexebb vagy választ is igényel akkor írd meg email-ben (<u>kis.gergely.sandor@uni-eszterhazy.hu</u>)</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <form method="POST" class="velemeny-form">
+                <input type="hidden" name="action" value="save_velemeny">
+                
+                <div class="form-group">
+                    <label for="velemeny">Vélemény / Hibajelentés:</label>
+                    <textarea 
+                        id="velemeny" 
+                        name="velemeny" 
+                        rows="12" 
+                        maxlength="20000" 
+                        placeholder="Írja ide véleményét, hibajelentését vagy javaslatait..."
+                        required
+                    >{{ current_velemeny }}</textarea>
+                    <div class="character-counter">
+                        <span id="char-count">{{ current_velemeny|length }}</span> / 20,000 karakter
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        💾 Vélemény mentése
+                    </button>
+                    <a href="/dashboard" class="btn btn-secondary">
+                        🔙 Vissza a Dashboard-ra
+                    </a>
+                </div>
+            </form>
+
+            <div class="velemeny-help">
+                <h3>❓ Segítség</h3>
+                <p><strong>Maximum hossz:</strong> 20,000 karakter</p>
+                <p><strong>Formátum:</strong> Egyszerű szöveg, sorok tördelése automatikus</p>
+                <p><strong>Mentés:</strong> A vélemény automatikusan mentésre kerül a fiókjához</p>
+                <p><strong>Szerkesztés:</strong> Bármikor módosíthatja véleményét</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Karakterszámláló
+        const textarea = document.getElementById('velemeny');
+        const charCount = document.getElementById('char-count');
+        
+        textarea.addEventListener('input', function() {
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            // Színváltozás a karakterek számától függően
+            if (length > 18000) {
+                charCount.style.color = '#e74c3c'; // Piros
+            } else if (length > 15000) {
+                charCount.style.color = '#f39c12'; // Narancs
+            } else {
+                charCount.style.color = '#2c3e50'; // Sötétszürke
+            }
+        });
+        
+        // Enter billentyű kezelése (nem küldi el a formot)
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                e.preventDefault();
+                document.querySelector('form').submit();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+{
+  "szokeszlet_nev": "Biotechnológia Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Recombinant DNA",
+      "jelentes1": "rekombináns DNS",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan mesterségesen létrehozott DNS, amely két vagy több különböző forrásból származó genetikai szekvenciát tartalmaz.",
+      "szoveg_kontextus": "Recombinant DNA technológiát alkalmaznak inzulin termelésére E. coli baktériumokban."
+    },
+    {
+      "idegen_szo": "Gene cloning",
+      "jelentes1": "génklónozás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy adott gén többszörözése laboratóriumi körülmények között, hogy nagy mennyiségben tanulmányozható legyen.",
+      "szoveg_kontextus": "Gene cloning segítségével kutatók izolálhatják és vizsgálhatják specifikus fehérjék génjeit."
+    },
+    {
+      "idegen_szo": "CRISPR-Cas9",
+      "jelentes1": "génszerkesztő rendszer",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Precíz génmódosító technológia, amely egy célzott DNS-szakaszt vág ki és cserél le új szekvenciára.",
+      "szoveg_kontextus": "A CRISPR-Cas9 forradalmasította a genetikai betegségek kutatását."
+    },
+    {
+      "idegen_szo": "Plasmid",
+      "jelentes1": "plazmid",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kis, kör alakú DNS-molekula, amely gyakran hordoz hasznos géneket és könnyen módosítható géntechnológiában.",
+      "szoveg_kontextus": "Plasmid vektort használnak génbevitelre baktériumsejtekbe."
+    },
+    {
+      "idegen_szo": "Polymerase Chain Reaction",
+      "jelentes1": "PCR",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Laboratóriumi módszer DNS-szakaszok milliárdszoros felnagyítására rövid idő alatt.",
+      "szoveg_kontextus": "A PCR alapvető szerepet játszik fertőző betegségek diagnosztikájában."
+    },
+    {
+      "idegen_szo": "Electrophoresis",
+      "jelentes1": "elektroforézis",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Technika, amely elektromos tér segítségével választja szét a DNS-, RNS- vagy fehérjemolekulákat méret szerint.",
+      "szoveg_kontextus": "A gél electrophoresis lehetővé teszi a DNS-minták vizuális ellenőrzését."
+    },
+    {
+      "idegen_szo": "Sequencing",
+      "jelentes1": "szekvenálás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A nukleotidok sorrendjének meghatározása egy DNS- vagy RNS-molekulában.",
+      "szoveg_kontextus": "A sequencing technológiák fejlődése gyorsította a genomkutatást."
+    },
+    {
+      "idegen_szo": "Transcriptomics",
+      "jelentes1": "transzkriptomika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A sejtekben kifejeződő összes RNS-molekula vizsgálata, a génaktivitás feltérképezésére.",
+      "szoveg_kontextus": "A transcriptomics elemzések feltárják a betegségekhez kapcsolódó génexpressziós mintázatokat."
+    },
+    {
+      "idegen_szo": "Proteomics",
+      "jelentes1": "proteomika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A sejtek teljes fehérjekészletének, azok szerkezetének és funkcióinak vizsgálata.",
+      "szoveg_kontextus": "A proteomics fontos szerepet játszik gyógyszerfejlesztésben."
+    },
+    {
+      "idegen_szo": "Metabolomics",
+      "jelentes1": "metabolomika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A sejtekben jelen lévő kis molekulájú metabolitok vizsgálata a biokémiai állapot feltérképezésére.",
+      "szoveg_kontextus": "A metabolomics segít megérteni a szervezet reakcióit gyógyszerekre."
+    },
+    {
+      "idegen_szo": "Bioreactor",
+      "jelentes1": "bioreaktor",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Zárt rendszer, amely élő sejtek vagy mikroorganizmusok kontrollált tenyésztésére szolgál.",
+      "szoveg_kontextus": "A bioreactor biztosítja a sejtnövekedéshez szükséges optimális környezetet."
+    },
+    {
+      "idegen_szo": "Fermentation",
+      "jelentes1": "fermentáció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Mikroorganizmusok által végzett biokémiai folyamat, amely szerves anyagokat alakít át.",
+      "szoveg_kontextus": "A fermentation alapvető eljárás antibiotikumok előállításában."
+    },
+    {
+      "idegen_szo": "Cell culture",
+      "jelentes1": "sejttenyészet",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Sejtek növesztése és fenntartása mesterséges körülmények között.",
+      "szoveg_kontextus": "A cell culture technikák alapvetőek a gyógyszerfejlesztési kísérletekben."
+    },
+    {
+      "idegen_szo": "Hybridoma",
+      "jelentes1": "hibridóma",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Immortális sejtvonal, amely monoklonális antitesteket termel.",
+      "szoveg_kontextus": "A hybridoma technológia forradalmasította az antitestgyártást."
+    },
+    {
+      "idegen_szo": "Monoclonal antibody",
+      "jelentes1": "monoklonális antitest",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Laboratóriumban előállított antitest, amely specifikusan kötődik egy antigénhez.",
+      "szoveg_kontextus": "Monoclonal antibody terápiákat alkalmaznak rákkezelésben."
+    },
+    {
+      "idegen_szo": "Gene therapy",
+      "jelentes1": "génterápia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Betegségek kezelése génbevitel vagy génmódosítás révén.",
+      "szoveg_kontextus": "A gene therapy lehetőséget nyújt genetikai rendellenességek gyógyítására."
+    },
+    {
+      "idegen_szo": "RNA interference",
+      "jelentes1": "RNS-interferencia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Sejtes mechanizmus, amely specifikus mRNS-ek lebontásával gátolja a génexpressziót.",
+      "szoveg_kontextus": "RNA interference segítségével célzottan csökkenthető káros fehérjék termelése."
+    },
+    {
+      "idegen_szo": "Synthetic biology",
+      "jelentes1": "szintetikus biológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Új biológiai rendszerek tervezése mérnöki elvekkel a természetes folyamatok módosításával.",
+      "szoveg_kontextus": "A synthetic biology képes teljesen új organizmusok létrehozására."
+    },
+    {
+      "idegen_szo": "Metagenomics",
+      "jelentes1": "metagenomika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Környezeti minták teljes genetikai tartalmának vizsgálata a mikrobák sokféleségének feltárására.",
+      "szoveg_kontextus": "Metagenomics kutatások új antibiotikum-jelölteket fedezhetnek fel."
+    },
+    {
+      "idegen_szo": "Bioprocessing",
+      "jelentes1": "bioprocesszálás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Biológiai anyagok előállítása ipari méretekben mikroorganizmusok vagy sejtvonalak felhasználásával.",
+      "szoveg_kontextus": "A bioprocessing kulcsszerepet játszik vakcinagyártásban."
+    },
+    {
+      "idegen_szo": "Downstream processing",
+      "jelentes1": "utófeldolgozás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Biotechnológiai termékek tisztítása és koncentrálása a gyártás után.",
+      "szoveg_kontextus": "A downstream processing meghatározza a végtermék tisztaságát."
+    },
+    {
+      "idegen_szo": "Upstream processing",
+      "jelentes1": "előfeldolgozás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A gyártási folyamat előkészítése, beleértve a sejttenyésztést és tápközegek előállítását.",
+      "szoveg_kontextus": "Upstream processing során optimalizálják a sejtnövekedési feltételeket."
+    },
+    {
+      "idegen_szo": "Biosensor",
+      "jelentes1": "bioszenzor",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Biológiai elemet és mérőegységet kombináló eszköz, amely specifikus molekulákat érzékel.",
+      "szoveg_kontextus": "Biosensorokat használnak glükózszint mérésére cukorbetegeknél."
+    },
+    {
+      "idegen_szo": "Biodegradation",
+      "jelentes1": "biológiai lebomlás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Anyagok lebontása mikroorganizmusok vagy biológiai folyamatok által.",
+      "szoveg_kontextus": "A biodegradation fontos szerepet játszik a környezetvédelemben."
+    }
+  ]
+}

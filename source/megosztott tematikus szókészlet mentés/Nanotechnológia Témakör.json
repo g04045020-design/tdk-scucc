@@ -1,0 +1,258 @@
+{
+  "szokeszlet_nev": "Nanotechnológia Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Nanoparticle",
+      "jelentes1": "nanorészecske",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan részecske, amelynek mérete 1-100 nanométer közötti, és különleges kémiai-fizikai tulajdonságokkal bír.",
+      "szoveg_kontextus": "A nanoparticle méretük miatt képesek áthatolni a sejtmembránon, ami célzott gyógyszeradagolást tesz lehetővé."
+    },
+    {
+      "idegen_szo": "Quantum Dot",
+      "jelentes1": "kvantumpont",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Nanoméretű félvezető részecske, amely kvantummechanikai tulajdonságai révén egyedi optikai és elektronikai viselkedést mutat.",
+      "szoveg_kontextus": "A quantum dot technológia forradalmasította a kijelzők színvisszaadását."
+    },
+    {
+      "idegen_szo": "Nanotube",
+      "jelentes1": "nanocső",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Hengeres szénatom-struktúra, amely rendkívüli mechanikai szilárdsággal és vezetőképességgel rendelkezik.",
+      "szoveg_kontextus": "A carbon nanotube kiváló anyag a nagy szilárdságú, mégis könnyű szerkezetek gyártásához."
+    },
+    {
+      "idegen_szo": "Self-Assembly",
+      "jelentes1": "önszerveződés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan folyamat, melyben molekulák spontán módon rendeződnek szabályos nanoszerkezetekké külső beavatkozás nélkül.",
+      "szoveg_kontextus": "A self-assembly kulcsszerepet játszik a nanoméretű anyagok költséghatékony előállításában."
+    },
+    {
+      "idegen_szo": "Atomic Layer Deposition",
+      "jelentes1": "atomréteg-leválasztás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Vékony rétegek nanométeres pontosságú növesztésére alkalmas eljárás felületeken.",
+      "szoveg_kontextus": "Az atomic layer deposition a mikroelektronikai chipek gyártásában is alapvető technológia."
+    },
+    {
+      "idegen_szo": "Nanoimprint Lithography",
+      "jelentes1": "nanoimprint-litográfia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Precíziós mintaátviteli technika, melyben nanoszerkezeteket préselnek egy felületre.",
+      "szoveg_kontextus": "A nanoimprint lithography olcsóbb alternatívát kínál a fotolitográfiához képest."
+    },
+    {
+      "idegen_szo": "Plasmonics",
+      "jelentes1": "plazmonika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A fémfelületeken lévő szabad elektronok kollektív rezgésének vizsgálata és felhasználása nanoszinten.",
+      "szoveg_kontextus": "A plasmonics lehetővé teszi az optikai eszközök méretének csökkentését a diffrakciós határ alá."
+    },
+    {
+      "idegen_szo": "Top-Down Fabrication",
+      "jelentes1": "felülről-lefelé gyártás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Gyártási módszer, amely nagyobb struktúrák mechanikai vagy kémiai megmunkálásával hoz létre nanoszerkezeteket.",
+      "szoveg_kontextus": "A top-down fabrication jól bevált a félvezetőiparban."
+    },
+    {
+      "idegen_szo": "Bottom-Up Fabrication",
+      "jelentes1": "alulról-felfelé gyártás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Nanostruktúrák létrehozása atomok és molekulák összerendezésével.",
+      "szoveg_kontextus": "A bottom-up fabrication kulcsfontosságú a molekuláris elektronika fejlődésében."
+    },
+    {
+      "idegen_szo": "Scanning Tunneling Microscope",
+      "jelentes1": "pásztázó alagútmikroszkóp",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan mikroszkóp, amely képes az atomok pozíciójának feltérképezésére vezető felületeken.",
+      "szoveg_kontextus": "A scanning tunneling microscope segítségével egyedi atomokat lehet mozgatni."
+    },
+    {
+      "idegen_szo": "Atomic Force Microscope",
+      "jelentes1": "atomerejű mikroszkóp",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Mikroszkóp, amely egy tű segítségével érzékeli a felületi erőket nanoszinten.",
+      "szoveg_kontextus": "Az atomic force microscope alkalmas élő sejtek nanoszerkezetének vizsgálatára."
+    },
+    {
+      "idegen_szo": "Molecular Self-Assembly",
+      "jelentes1": "molekuláris önszerveződés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Molekulák spontán elrendeződése stabil nanoszerkezetekké kémiai kölcsönhatások révén.",
+      "szoveg_kontextus": "A molecular self-assembly önjavító anyagok létrehozását is lehetővé teszi."
+    },
+    {
+      "idegen_szo": "Nanofluidics",
+      "jelentes1": "nanofluidika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Folyadékok áramlásának vizsgálata nanoszkopikus csatornákban és rendszerekben.",
+      "szoveg_kontextus": "A nanofluidics alapja a hordozható, gyors diagnosztikai eszközöknek."
+    },
+    {
+      "idegen_szo": "Surface Functionalization",
+      "jelentes1": "felületfunkcionalizálás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Felületek kémiai módosítása speciális tulajdonságok elérése érdekében nanoszinten.",
+      "szoveg_kontextus": "A surface functionalization javítja a biokompatibilitást orvosi implantátumoknál."
+    },
+    {
+      "idegen_szo": "Nanocomposite",
+      "jelentes1": "nanokompozit",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan kompozit anyag, amelyben a töltőanyag nanoméretű részecskékből áll.",
+      "szoveg_kontextus": "A nanocomposite anyagok kiemelkedő mechanikai és hőállósági tulajdonságokat mutatnak."
+    },
+    {
+      "idegen_szo": "Nanomedicine",
+      "jelentes1": "nanogyógyászat",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A nanotechnológia alkalmazása diagnosztikai és terápiás célokra az orvostudományban.",
+      "szoveg_kontextus": "A nanomedicine lehetővé teszi a célzott daganatellenes kezeléseket."
+    },
+    {
+      "idegen_szo": "Nanotoxicology",
+      "jelentes1": "nanotoxikológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A nanorészecskék élő szervezetekre és környezetre gyakorolt toxikus hatásainak vizsgálata.",
+      "szoveg_kontextus": "A nanotoxicology kutatások szabályozási irányelvek kialakítását segítik."
+    },
+    {
+      "idegen_szo": "Nanorobot",
+      "jelentes1": "nanorobot",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Nanoméretű, programozható gép, amely képes célzott feladatok ellátására molekuláris szinten.",
+      "szoveg_kontextus": "A nanorobot képes gyógyszert szállítani közvetlenül a beteg sejtekhez."
+    },
+    {
+      "idegen_szo": "Photonic Crystal",
+      "jelentes1": "fotonkristály",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Periodikus optikai szerkezet, amely befolyásolja a fény terjedését nanoszinten.",
+      "szoveg_kontextus": "A photonic crystal szerkezetek optikai szűrők és lézerek tervezésében hasznosak."
+    },
+    {
+      "idegen_szo": "Nanoelectronics",
+      "jelentes1": "nanoelektronika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az elektronikai eszközök nanoszintű alkatrészekkel való megvalósítása.",
+      "szoveg_kontextus": "A nanoelectronics kulcsfontosságú a számítástechnikai teljesítmény növelésében."
+    },
+    {
+      "idegen_szo": "Metamaterial",
+      "jelentes1": "metamateriál",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Mesterséges anyag, amely olyan tulajdonságokkal rendelkezik, amelyek természetes anyagokban nem fordulnak elő.",
+      "szoveg_kontextus": "A metamaterial segítségével láthatatlanná tévő köpenyeket is terveznek."
+    },
+    {
+      "idegen_szo": "Nanosensor",
+      "jelentes1": "nanoszenzor",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Érzékelő, amely képes nanoszinten történő fizikai, kémiai vagy biológiai változások detektálására.",
+      "szoveg_kontextus": "A nanosensor képes a levegőben lévő szennyezőanyagok azonnali kimutatására."
+    },
+    {
+      "idegen_szo": "Nanolithography",
+      "jelentes1": "nanolitográfia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Mintaátviteli technológia, amellyel nanoszerkezetek hozhatók létre felületeken.",
+      "szoveg_kontextus": "A nanolithography lehetővé teszi bonyolult mikrochip mintázatok létrehozását."
+    }
+  ]
+}

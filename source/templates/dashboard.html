@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Szó és Fogalom Tanuló Környezet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb navigáció -->
+        <div class="breadcrumb">
+            <a href="/">🏠 Főoldal</a>
+            <span class="separator">/</span>
+            <span>Dashboard</span>
+        </div>
+        
+        <div class="header">
+            <h1>🎓 Szó és Fogalom Tanuló Környezet</h1>
+            <div class="user-info">
+                <div class="user-name">{{ user_name }}</div>
+                <div class="user-email">{{ user_email }}</div>
+                <a href="/logout" class="logout-btn">Kijelentkezés</a>
+            </div>
+        </div>
+        
+        <!-- Flash üzenetek megjelenítése -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="welcome-section">
+            <h2>Üdvözöljük ezen csodálatos Környezetben! 🎉</h2>
+            <p>Válassza ki a kívánt tevékenységet az alábbi lehetőségek közül.</p>
+        </div>
+        
+        <!-- Gyors statisztikák -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-title">Azonosító Kód</div>
+                <div class="stat-value">{{ user_id }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Regisztráció dátuma</div>
+                <div class="stat-value">{{ user_reg_date }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Jogosultsági szint</div>
+                <div class="stat-value">{{ user_role }}</div>
+            </div>
+        </div>
+        
+        <!-- Fő műveletek -->
+        <div class="main-actions">
+            <a href="/vocabulary" class="action-card vocabulary">
+                <span class="action-icon">📚</span>
+                <h3>Szókészlet létrehozás</h3>
+                <p>Hozzon létre saját szókészletet a tanuláshoz</p>
+            </a>
+            
+            <a href="/learning" class="action-card learning">
+                <span class="action-icon">🎯</span>
+                <h3>Idegenszavak tanulása</h3>
+                <p>Tanulja meg az idegen szavakat interaktív módszerekkel</p>
+            </a>
+            
+            <a href="/tasks" class="action-card tasks">
+                <span class="action-icon">📝</span>
+                <h3>Feladat megoldás</h3>
+                <p>Oldja meg a különböző típusú feladatokat és tesztelje tudását</p>
+            </a>
+            
+            <a href="/statistics" class="action-card stats">
+                <span class="action-icon">📊</span>
+                <h3>Statisztikák megtekintése</h3>
+                <p>Követheti fejlődését és megtekintheti részletes statisztikáit</p>
+            </a>
+            
+            <a href="/velemeny" class="action-card velemeny">
+                <span class="action-icon">💬</span>
+                <h3>Vélemény & Hibajelentés</h3>
+                <p>Írja meg véleményét az oldalról és jelezze fel a problémákat</p>
+            </a>
+            
+            {% if user_regid and user_regid|int == 1 %}
+            <a href="/admin" class="action-card admin">
+                <span class="action-icon">🛠️</span>
+                <h3>Admin felület</h3>
+                <p>Adatbázis tartalom, statisztikák, felhasználók</p>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 

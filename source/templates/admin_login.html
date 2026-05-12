@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin belépés</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
+        .container { max-width: 400px; margin: 80px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        .btn { background: #2196F3; color: #fff; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; }
+        .btn:hover { background: #1976D2; }
+        .flash-message { padding: 12px; margin-bottom: 15px; border-radius: 5px; font-weight: bold; }
+        .flash-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .flash-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin belépés</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ 'success' if category == 'success' else 'error' }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="/admin_login">
+            <div class="form-group">
+                <label for="admin_jelszo">Admin jelszó:</label>
+                <input type="password" id="admin_jelszo" name="admin_jelszo" required autocomplete="off">
+            </div>
+            <button type="submit" class="btn">Belépés</button>
+        </form>
+        <div style="margin-top:20px; text-align:center;">
+            <a href="/">← Vissza a főoldalra</a>
+        </div>
+    </div>
+</body>
+</html> 

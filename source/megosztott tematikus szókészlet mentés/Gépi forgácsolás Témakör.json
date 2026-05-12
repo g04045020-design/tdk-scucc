@@ -1,0 +1,225 @@
+{
+  "szokeszlet_nev": "Gépi forgácsolás Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "CNC",
+      "jelentes1": "számítógépes vezérlés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Computer Numerical Control, számítógéppel vezérelt szerszámgépek, amelyek automatikusan végzik a megmunkálási műveleteket.",
+      "szoveg_kontextus": "A CNC gépek programozása lehetővé teszi a bonyolult alkatrészek nagy pontosságú megmunkálását."
+    },
+    {
+      "idegen_szo": "Spindle",
+      "jelentes1": "orsó",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Forgó tengely a szerszámgépben, amely a szerszámot vagy munkadarabot tartja és forgatja.",
+      "szoveg_kontextus": "A marógép spindle fordulatszámát a megmunkálandó anyaghoz kell igazítani."
+    },
+    {
+      "idegen_szo": "Feed rate",
+      "jelentes1": "előtolási sebesség",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A szerszám vagy munkadarab előrehaladásának sebessége a forgácsolás során.",
+      "szoveg_kontextus": "A túl nagy feed rate rontja a felületi minőséget és károsíthatja a szerszámot."
+    },
+    {
+      "idegen_szo": "Tool holder",
+      "jelentes1": "szerszámtartó",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Eszköz, amely rögzíti a forgácsolószerszámot a gép orsójához vagy szánjához.",
+      "szoveg_kontextus": "A megfelelő tool holder kiválasztása csökkenti a rezgést és növeli a pontosságot."
+    },
+    {
+      "idegen_szo": "Coolant",
+      "jelentes1": "hűtőfolyadék",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Hűtő és kenő folyadék, amely csökkenti a súrlódást és a hőt a megmunkálás során.",
+      "szoveg_kontextus": "Megfelelő coolant használatával növelhető a szerszám élettartama."
+    },
+    {
+      "idegen_szo": "Chip load",
+      "jelentes1": "forgácsterhelés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az egy forgácsoló élre jutó anyagmennyiség egy fordulat alatt.",
+      "szoveg_kontextus": "A chip load túl nagy értéke szerszámtörést okozhat."
+    },
+    {
+      "idegen_szo": "G-code",
+      "jelentes1": "gépkód",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Szabványos CNC programozási nyelv, amely a gép mozgásait határozza meg.",
+      "szoveg_kontextus": "A G-code utasítások pontosan definiálják a marópályát."
+    },
+    {
+      "idegen_szo": "Tapping",
+      "jelentes1": "menetfúrás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Belső menet kialakítása fúróhoz hasonló szerszámmal.",
+      "szoveg_kontextus": "A tapping műveletet alacsony fordulatszámon végzik a menet minősége érdekében."
+    },
+    {
+      "idegen_szo": "Boring",
+      "jelentes1": "furatbővítés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Meglévő furat átmérőjének pontosítása és simítása speciális szerszámmal.",
+      "szoveg_kontextus": "A boring művelet javítja a furat geometriai pontosságát."
+    },
+    {
+      "idegen_szo": "Facing",
+      "jelentes1": "homlokmarás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Síklap kialakítása a munkadarab végén vagy homlokfelületén.",
+      "szoveg_kontextus": "A facing biztosítja a munkadarab merőleges síkját a tengelyhez."
+    },
+    {
+      "idegen_szo": "Turning",
+      "jelentes1": "esztergálás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Hengeres felület megmunkálása forgó munkadarabbal és álló szerszámmal.",
+      "szoveg_kontextus": "A turning folyamat során a munkadarab folyamatos forgása biztosítja az egyenletes forgácsolást."
+    },
+    {
+      "idegen_szo": "Milling",
+      "jelentes1": "marás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Anyageltávolítás forgó szerszámmal, különböző irányú előtolással.",
+      "szoveg_kontextus": "A milling sokféle geometriát képes kialakítani egyetlen befogásból."
+    },
+    {
+      "idegen_szo": "Reaming",
+      "jelentes1": "dörzsárazás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Furat méretének és felületének pontosítása kis anyagleválasztással.",
+      "szoveg_kontextus": "A reaming a furat végső méretének beállítására szolgál."
+    },
+    {
+      "idegen_szo": "Fixture",
+      "jelentes1": "befogó készülék",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Eszköz, amely a munkadarabot stabilan rögzíti a megmunkálás alatt.",
+      "szoveg_kontextus": "A precíz fixture csökkenti a vibrációt és növeli a pontosságot."
+    },
+    {
+      "idegen_szo": "Climb milling",
+      "jelentes1": "egyenirányú marás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A szerszám forgása megegyezik az előtolás irányával, simább felület érdekében.",
+      "szoveg_kontextus": "Climb milling alkalmazásával kisebb a szerszám kopása."
+    },
+    {
+      "idegen_szo": "Conventional milling",
+      "jelentes1": "ellenirányú marás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A szerszám forgása ellentétes az előtolás irányával, nagyobb erőhatásokkal.",
+      "szoveg_kontextus": "Conventional milling esetén a forgács vastagsága fokozatosan nő."
+    },
+    {
+      "idegen_szo": "Cutting speed",
+      "jelentes1": "forgácsolási sebesség",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A szerszám élének anyaghoz viszonyított sebessége.",
+      "szoveg_kontextus": "A cutting speed meghatározza a szerszám élettartamát és a felületi minőséget."
+    },
+    {
+      "idegen_szo": "Backlash",
+      "jelentes1": "holtjáték",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A mozgó alkatrészek közötti lazaság, ami pontatlanságot okozhat.",
+      "szoveg_kontextus": "A CNC gépek backlash kompenzációt alkalmaznak a pontosság fenntartására."
+    },
+    {
+      "idegen_szo": "Depth of cut",
+      "jelentes1": "fogásmélység",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A szerszám által egy menetben eltávolított anyag vastagsága.",
+      "szoveg_kontextus": "A túl nagy depth of cut túlterheli a gépet és a szerszámot."
+    },
+    {
+      "idegen_szo": "Runout",
+      "jelentes1": "ütés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A szerszám vagy orsó tengelyirányú eltérése az ideális középtengelytől.",
+      "szoveg_kontextus": "A nagy runout rontja a felületi minőséget és csökkenti a pontosságot."
+    }
+  ]
+}

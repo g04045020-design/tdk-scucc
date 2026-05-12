@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladatmegoldás - Szó és Fogalom Tanuló Környezet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="tasks-page">
+    <div class="container">
+        <!-- Breadcrumb navigáció -->
+        <div class="breadcrumb">
+            <a href="/">🏠 Főoldal</a>
+            <span class="separator">/</span>
+            <a href="/dashboard">Dashboard</a>
+            <span class="separator">/</span>
+            <span>Feladatmegoldás</span>
+        </div>
+        <div class="header">
+            <h1>📝 Feladatmegoldás</h1>
+            <div class="user-info">
+                <div class="user-name">{{ user_name }}</div>
+                <div class="user-email">{{ user_email }}</div>
+                <a href="/logout" class="logout-btn">Kijelentkezés</a>
+            </div>
+        </div>
+        <div id="task-settings-container">
+            <h2>1. Feladattípus kiválasztása</h2>
+            <div id="task-method-list">
+                <button class="task-method-btn" data-method="beirasos">Beírásos</button>
+                <button class="task-method-btn" data-method="kivalasztasos">Kiválasztásos</button>
+                <button class="task-method-btn" data-method="parositasos">Egymáshoz párosítás</button>
+            </div>
+            <div id="task-options"></div>
+            <h2>2. Szókészlet kiválasztása</h2>
+            <div id="task-vocab-list">
+                {% for szokeszlet in szokeszletek %}
+                    <button class="task-vocab-btn" data-id="{{ szokeszlet[0] }}">
+                        {{ szokeszlet[1] }}
+                        {% if szokeszlet[2] == user_id %}(Saját){% elif not szokeszlet[2] %}(Publikus){% elif user_id in szokeszlet[2].split(',') or szokeszlet[2].startswith("/") %}(Megosztott){% endif %}
+                    </button>
+                {% endfor %}
+            </div>
+            <h2>3. Egyéb beállítások</h2>
+            <div class="fonetika-block">
+                <label><input type="checkbox" id="fonetika-checkbox"> Csak fonetikával rendelkező szavak jelenjenek meg</label>
+            </div>
+            <div style="height: 20px;"></div>
+            <button id="start-task-btn" disabled>Feladat indítása</button>
+        </div>
+        <div id="modify-settings-container" style="display: none;">
+            <center><button id="modify-task-settings-btn">Feladat beállítások módosítása</button></center>
+            <div style="height: 40px;"></div>
+        </div>
+        <div id="task-workspace"></div>
+    </div>
+    <script type="module">
+        import { renderBeirasosTask } from "{{ url_for('static', filename='js_tasks/beirasos.js') }}";
+        import { renderKivalasztasosTask } from "{{ url_for('static', filename='js_tasks/kivalasztasos.js') }}";
+        import { renderParositasosTask } from "{{ url_for('static', filename='js_tasks/parositasos.js') }}";
+
+        let selectedTaskMethod = null;
+        let selectedTaskVocab = null;
+
+        // Dinamikus opciók megjelenítése feladattípus szerint
+        function renderTaskOptions(method) {
+            const optionsDiv = document.getElementById('task-options');
+            optionsDiv.innerHTML = '';
+            if (method === 'beirasos') {
+                optionsDiv.innerHTML = `<label><input type="checkbox" id="show-first-letter"> Legyen-e megadott betű?</label>`;
+            } else if (method === 'kivalasztasos') {
+                optionsDiv.innerHTML = `
+                    <div style="margin-bottom:8px;">
+                        <button type="button" class="diff-btn" data-diff="konnyu">Könnyű</button>
+                        <button type="button" class="diff-btn" data-diff="nehez">Nehéz</button>
+                    </div>
+                    <label>Felkínált lehetőségek száma: <input type="number" id="num-options" min="2" max="10" value="4" style="width:60px;"></label>
+                `;
+                // Számbeállító mező eseménykezelője
+                const numOptions = document.getElementById('num-options');
+                if (numOptions) {
+                    numOptions.addEventListener('input', updateStartBtn);
+                }
+            } else if (method === 'parositasos') {
+                optionsDiv.innerHTML = `
+                    <div style="margin-bottom:8px;">
+                        <button type="button" class="diff-btn" data-diff="konnyu">Könnyű</button>
+                        <button type="button" class="diff-btn" data-diff="nehez">Nehéz</button>
+                    </div>
+                `;
+            }
+
+            // Egyéb eseménykezelők hozzáadása
+            const showFirstLetter = document.getElementById('show-first-letter');
+            if (showFirstLetter) {
+                showFirstLetter.addEventListener('change', updateStartBtn);
+            }
+
+            // Nehézség gombok eseménykezelői (always re-attach after render)
+            optionsDiv.querySelectorAll('.diff-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    optionsDiv.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateStartBtn();
+                });
+            });
+        }
+
+        // Indítás gomb engedélyezése
+        function updateStartBtn() {
+            const btn = document.getElementById('start-task-btn');
+            let isValid = true;
+            let errorMessages = [];
+
+            // 1. Feladattípus ellenőrzése
+            if (!selectedTaskMethod) {
+                isValid = false;
+                errorMessages.push("Válassz feladattípust!");
+            }
+
+            // 2. Szókészlet ellenőrzése
+            if (!selectedTaskVocab) {
+                isValid = false;
+                errorMessages.push("Válassz szókészletet!");
+            }
+
+            // 3. Feladattípus-specifikus ellenőrzések
+            if (selectedTaskMethod) {
+                if (selectedTaskMethod === 'kivalasztasos' || selectedTaskMethod === 'parositasos') {
+                    // Nehézségi szint ellenőrzése
+                    const selectedDiff = document.querySelector('.diff-btn.selected');
+                    if (!selectedDiff) {
+                        isValid = false;
+                        errorMessages.push("Válassz nehézségi szintet!");
+                    }
+
+                    // Kiválasztásos esetén a lehetőségek számának ellenőrzése
+                    if (selectedTaskMethod === 'kivalasztasos') {
+                        const numOptions = document.getElementById('num-options');
+                        if (!numOptions || !numOptions.value) {
+                            isValid = false;
+                            errorMessages.push("Add meg a felkínált lehetőségek számát!");
+                        } else if (numOptions.value < 4 || numOptions.value > 15) {
+                            isValid = false;
+                            errorMessages.push("A lehetőségek száma 4 és 15 között legyen!");
+                        }
+                    }
+                }
+            }
+
+            // Gomb állapotának beállítása
+            btn.disabled = !isValid;
+
+            // Hibaüzenetek megjelenítése
+            const errorDiv = document.getElementById('validation-errors') || (() => {
+                const div = document.createElement('div');
+                div.id = 'validation-errors';
+                div.style.color = '#f44336';
+                div.style.marginTop = '10px';
+                btn.parentNode.insertBefore(div, btn.nextSibling);
+                return div;
+            })();
+            
+            errorDiv.innerHTML = errorMessages.length ? 
+                `<ul>${errorMessages.map(msg => `<li>${msg}</li>`).join('')}</ul>` : '';
+        }
+
+        // Eseménykezelők hozzáadása
+        document.querySelectorAll('.task-method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.task-method-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedTaskMethod = this.getAttribute('data-method');
+                renderTaskOptions(selectedTaskMethod);
+                updateStartBtn();
+                // Feladattípus váltáskor workspace törlése
+                const workspace = document.getElementById('task-workspace');
+                if (workspace) workspace.innerHTML = '';
+            });
+        });
+
+        document.querySelectorAll('.task-vocab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.task-vocab-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedTaskVocab = this.getAttribute('data-id');
+                updateStartBtn();
+            });
+        });
+
+        // Feladat indítás függvény
+        function startTaskWithCurrentSettings() {
+            // Beállítások elrejtése és módosítás gomb megjelenítése
+            document.getElementById('task-settings-container').style.display = 'none';
+            document.getElementById('modify-settings-container').style.display = 'block';
+            
+            // Alap beállítások összegyűjtése
+            const taskData = {
+                task_type: selectedTaskMethod,
+                vocab_id: selectedTaskVocab,
+                options: {
+                    fonetika_only: document.getElementById('fonetika-checkbox').checked
+                }
+            };
+
+            // Feladattípus-specifikus beállítások hozzáadása
+            if (selectedTaskMethod === 'beirasos') {
+                const showFirstLetter = document.getElementById('show-first-letter');
+                if (showFirstLetter) {
+                    taskData.options.show_first_letter = showFirstLetter.checked;
+                }
+            } else if (selectedTaskMethod === 'kivalasztasos') {
+                const selectedDiff = document.querySelector('.diff-btn.selected');
+                const numOptions = document.getElementById('num-options');
+                if (selectedDiff && numOptions) {
+                    taskData.difficulty = selectedDiff.getAttribute('data-diff');
+                    taskData.options.num_options = parseInt(numOptions.value);
+                }
+            } else if (selectedTaskMethod === 'parositasos') {
+                const selectedDiff = document.querySelector('.diff-btn.selected');
+                if (selectedDiff) {
+                    taskData.difficulty = selectedDiff.getAttribute('data-diff');
+                }
+            }
+
+            // Küldés a szervernek
+            fetch('/start_task', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(taskData)
+            }).then(r => r.json()).then(data => {
+                const workspace = document.getElementById('task-workspace');
+                if (data.error) {
+                    workspace.innerText = data.error;
+                    return;
+                }
+                // Feladat típusának megfelelően jelenítjük meg
+                if (data.settings.task_type === 'beirasos') {
+                    // Állapotot tárolunk, hogy újratölthető legyen a feladat
+                    let currentTaskData = data;
+                    let lastAnswers = {};
+                    function showBeirasosTask(result = null, userAnswers = null) {
+                        renderBeirasosTask(currentTaskData, workspace, function(submitData, answers) {
+                            // answers: a felhasználó aktuális válaszai
+                            lastAnswers = answers;
+                            fetch('/submit_task', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(submitData)
+                            }).then(r => r.json()).then(resp => {
+                                if (resp.error) {
+                                    workspace.innerText = resp.error;
+                                } else {
+                                    // Eredmény megjelenítése, "Következő feladat" gombbal
+                                    showBeirasosTask(resp, lastAnswers);
+                                }
+                            });
+                        }, result, function() {
+                            // Következő feladat: újraindítjuk a feladatot az aktuális beállításokkal
+                            startTaskWithCurrentSettings();
+                        }, userAnswers || lastAnswers);
+                    }
+                    showBeirasosTask();
+                } else if (data.settings.task_type === 'kivalasztasos') {
+                    // --- ÚJ WRAPPER FÜGGVÉNY ---
+                    function showKivalasztasosTask(result = null, userAnswers = null) {
+                        renderKivalasztasosTask(data, workspace, function(submitData, answers) {
+                            fetch('/submit_task', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(submitData)
+                            }).then(r => r.json()).then(resp => {
+                                if (resp.error) {
+                                    workspace.innerText = resp.error;
+                                } else {
+                                    // Eredmény megjelenítése, "Következő feladat" gombbal
+                                    showKivalasztasosTask(resp, answers);
+                                }
+                            });
+                        }, result, function() {
+                            // Következő feladat: újraindítjuk a feladatot az aktuális beállításokkal
+                            startTaskWithCurrentSettings();
+                        }, userAnswers || {});
+                    }
+                    showKivalasztasosTask();
+                } else if (data.settings.task_type === 'parositasos') {
+                    // --- ÚJ WRAPPER FÜGGVÉNY ---
+                    function showParositasosTask(result = null, userAnswers = null) {
+                        renderParositasosTask(data, workspace, function(submitData, answers) {
+                            fetch('/submit_task', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(submitData)
+                            }).then(r => r.json()).then(resp => {
+                                if (resp.error) {
+                                    workspace.innerText = resp.error;
+                                } else {
+                                    // Eredmény megjelenítése, "Következő feladat" gombbal
+                                    showParositasosTask(resp, answers);
+                                }
+                            });
+                        }, result, function() {
+                            // Következő feladat: újraindítjuk a feladatot az aktuális beállításokkal
+                            startTaskWithCurrentSettings();
+                        }, userAnswers || {});
+                    }
+                    showParositasosTask();
+                } else {
+                    workspace.innerText = 'Ez a feladattípus még nincs implementálva.';
+                }
+            });
+        }
+
+        // Feladat indítás gomb eseménykezelője
+        document.getElementById('start-task-btn').addEventListener('click', startTaskWithCurrentSettings);
+
+        // Feladat beállítások módosítása gomb eseménykezelője
+        document.getElementById('modify-task-settings-btn').addEventListener('click', function() {
+            // Feladat workspace törlése
+            const workspace = document.getElementById('task-workspace');
+            workspace.innerHTML = '';
+            
+            // Beállítások megjelenítése és módosítás gomb elrejtése
+            document.getElementById('task-settings-container').style.display = 'block';
+            document.getElementById('modify-settings-container').style.display = 'none';
+        });
+
+        // Kezdeti állapot beállítása
+        updateStartBtn();
+    </script>
+</body>
+</html> 

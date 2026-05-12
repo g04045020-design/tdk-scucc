@@ -1,0 +1,214 @@
+{
+    "szokeszlet_nev": "Meteorológia Témakör",
+    "szavak": [
+        {
+            "idegen_szo": "Advection",
+            "jelentes1": "áramlás",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A levegő vagy más atmoszférikus komponensek vízszintes irányú szállítása a szél által.",
+            "szoveg_kontextus": "Az Advection folyamat kulcsfontosságú a meleg és hideg légtömegek helyváltoztatásában."
+        },
+        {
+            "idegen_szo": "Orographic lift",
+            "jelentes1": "hegyi emelkedés",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A levegő kényszerített felemelkedése hegyvonulatok miatt, ami felhőképződéshez és csapadékhoz vezethet.",
+            "szoveg_kontextus": "Az Orographic lift gyakori esőzést okoz hegyvidéki területeken."
+        },
+        {
+            "idegen_szo": "Anemometer",
+            "jelentes1": "szélmérő",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Eszköz a szélsebesség mérésére, amely kulcsfontosságú adat a meteorológiai előrejelzésekben.",
+            "szoveg_kontextus": "Az Anemometer segítségével pontosan meghatározható a vihar közeledő ereje."
+        },
+        {
+            "idegen_szo": "Isobar",
+            "jelentes1": "azonosnyomás-vonal",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A légnyomás azonos értékeit összekötő vonal a meteorológiai térképeken.",
+            "szoveg_kontextus": "Az Isobarok sűrűsödése erős szelek kialakulását jelzi."
+        },
+        {
+            "idegen_szo": "Dew point",
+            "jelentes1": "harmatpont",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Az a hőmérséklet, amelyen a levegő telítetté válik és a pára kicsapódik.",
+            "szoveg_kontextus": "A Dew point érték csökkenése fokozza a páralecsapódás esélyét."
+        },
+        {
+            "idegen_szo": "Baroclinic zone",
+            "jelentes1": "légnyomás-hőmérséklet határ",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Az a térség, ahol a légnyomás és a hőmérséklet horizontális gradiensben van, gyakran ciklonok kialakulásának helye.",
+            "szoveg_kontextus": "A Baroclinic zone meghatározása kulcs a viharrendszerek előrejelzésében."
+        },
+        {
+            "idegen_szo": "Synoptic scale",
+            "jelentes1": "nagyléptékű",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Több száz kilométeres kiterjedésű légköri jelenségek vizsgálati léptéke.",
+            "szoveg_kontextus": "A Synoptic scale elemzés segít az egész kontinensre kiterjedő időjárási minták azonosításában."
+        },
+        {
+            "idegen_szo": "Cyclogenesis",
+            "jelentes1": "ciklonképződés",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A ciklonok kialakulásának és fejlődésének folyamata.",
+            "szoveg_kontextus": "A Cyclogenesis különösen aktív a meleg és hideg frontok találkozásánál."
+        },
+        {
+            "idegen_szo": "Mesoscale",
+            "jelentes1": "középléptékű",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "1–100 km-es léptékű légköri jelenségek, például zivatarcellák.",
+            "szoveg_kontextus": "A Mesoscale vizsgálatok fontosak a lokális viharok előrejelzésében."
+        },
+        {
+            "idegen_szo": "Thermal inversion",
+            "jelentes1": "hőmérsékleti inverzió",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Amikor a hőmérséklet magassággal nő, gátolva a függőleges légkeveredést.",
+            "szoveg_kontextus": "A Thermal inversion gyakran fokozza a légszennyezettséget városokban."
+        },
+        {
+            "idegen_szo": "Troposphere",
+            "jelentes1": "alsó légkör",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A Föld légkörének legalsó rétege, ahol az időjárási jelenségek túlnyomó része zajlik.",
+            "szoveg_kontextus": "A troposphere a légköri folyamatok elsődleges színtere."
+        },
+        {
+            "idegen_szo": "Stratosphere",
+            "jelentes1": "második légkörréteg",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A troposphere felett elhelyezkedő légkörréteg, amelyben található az ózonréteg.",
+            "szoveg_kontextus": "A stratosphere kulcsszerepet játszik az UV-sugárzás elnyelésében."
+        },
+        {
+            "idegen_szo": "Barometric pressure",
+            "jelentes1": "légnyomás",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A légkör súlya által kifejtett nyomás, mely fontos az időjárás előrejelzésében.",
+            "szoveg_kontextus": "A barometric pressure csökkenése gyakran vihar közeledtét jelzi."
+        },
+        {
+            "idegen_szo": "Adiabatic lapse rate",
+            "jelentes1": "adiabatikus hőmérséklet-csökkenés",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A levegő hőmérsékletének változási üteme térfogatváltozáskor hőcsere nélkül.",
+            "szoveg_kontextus": "Az adiabatic lapse rate meghatározza a feláramló levegő lehűlését."
+        },
+        {
+            "idegen_szo": "Jet stream",
+            "jelentes1": "futóáramlás",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Gyorsan áramló, keskeny légáram a felső troposphere-ben.",
+            "szoveg_kontextus": "A jet stream eltolódása jelentősen befolyásolja az időjárási mintázatokat."
+        },
+        {
+            "idegen_szo": "Synoptic chart",
+            "jelentes1": "szinoptikus térkép",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Időjárási adatok térképi ábrázolása egy adott időpontban.",
+            "szoveg_kontextus": "A synoptic chart elemzése alapvető az előrejelzések készítésében."
+        },
+        {
+            "idegen_szo": "Inversion layer",
+            "jelentes1": "hőmérsékleti inverzió",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "Olyan réteg a légkörben, ahol a hőmérséklet a magassággal nő.",
+            "szoveg_kontextus": "Az inversion layer gátolhatja a függőleges légmozgásokat."
+        },
+        {
+            "idegen_szo": "Radiative cooling",
+            "jelentes1": "sugárzásos lehűlés",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A felszín hőmérsékletének csökkenése hősugárzás révén, főleg éjszaka.",
+            "szoveg_kontextus": "A radiative cooling gyakran vezet hajnali ködképződéshez."
+        },
+        {
+            "idegen_szo": "Humidity ratio",
+            "jelentes1": "páratartalom aránya",
+            "jelentes2": "",
+            "jelentes3": "",
+            "jelentes4": "",
+            "jelentes5": "",
+            "fonetika": "",
+            "leiras": "A vízgőz tömegének aránya a száraz levegő tömegéhez képest.",
+            "szoveg_kontextus": "A humidity ratio változása befolyásolja a felhőképződést."
+        }
+    ]
+}

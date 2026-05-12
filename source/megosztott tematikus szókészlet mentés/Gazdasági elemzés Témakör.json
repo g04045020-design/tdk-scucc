@@ -1,0 +1,247 @@
+{
+  "szokeszlet_nev": "Gazdasági elemzés Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Return on Equity",
+      "jelentes1": "Sajáttőke arányos nyereség",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vállalat adózott eredményének aránya a saját tőkéhez viszonyítva, a jövedelmezőség egyik fő mutatója.",
+      "szoveg_kontextus": "A befektetők figyelik a Return on Equity mutatót a vállalat hatékonyságának értékeléséhez."
+    },
+    {
+      "idegen_szo": "Net Present Value",
+      "jelentes1": "Nettó jelenérték",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A jövőbeni pénzáramok jelenértéke, levonva a kezdeti befektetési költséget; beruházások értékelésére használt mutató.",
+      "szoveg_kontextus": "A projekt pozitív Net Present Value értéke a befektetés megtérülését jelzi."
+    },
+    {
+      "idegen_szo": "Internal Rate of Return",
+      "jelentes1": "Belső megtérülési ráta",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az a diszkontráta, amely mellett egy beruházás nettó jelenértéke nulla.",
+      "szoveg_kontextus": "A menedzsment az Internal Rate of Return alapján döntött a projekt folytatásáról."
+    },
+    {
+      "idegen_szo": "Cost-Benefit Analysis",
+      "jelentes1": "Költség-haszon elemzés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Gazdasági módszer, amely a várható költségeket és hasznokat hasonlítja össze döntéshozatal előtt.",
+      "szoveg_kontextus": "A városvezetés Cost-Benefit Analysis segítségével döntött az új infrastruktúra beruházásról."
+    },
+    {
+      "idegen_szo": "Gross Domestic Product",
+      "jelentes1": "Bruttó hazai termék",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy országban adott időszak alatt előállított végső termékek és szolgáltatások összértéke.",
+      "szoveg_kontextus": "A Gross Domestic Product növekedése a gazdaság erősödését mutatja."
+    },
+    {
+      "idegen_szo": "Inflation Rate",
+      "jelentes1": "Inflációs ráta",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A fogyasztói árak éves százalékos változását kifejező mutató.",
+      "szoveg_kontextus": "Az Inflation Rate hirtelen emelkedése csökkentette a vásárlóerőt."
+    },
+    {
+      "idegen_szo": "Liquidity Ratio",
+      "jelentes1": "Likviditási mutató",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vállalat rövid távú fizetőképességét mutató pénzügyi arányszám.",
+      "szoveg_kontextus": "A magas Liquidity Ratio azt jelzi, hogy a cég könnyen fedezi rövid távú kötelezettségeit."
+    },
+    {
+      "idegen_szo": "Leverage Ratio",
+      "jelentes1": "Tőkeáttételi mutató",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kötelezettségek aránya a saját tőkéhez képest; a pénzügyi kockázat mérésére használják.",
+      "szoveg_kontextus": "A bankok szigorú Leverage Ratio követelményeket írnak elő."
+    },
+    {
+      "idegen_szo": "Break-Even Point",
+      "jelentes1": "Nullszaldós pont",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az az értékesítési szint, ahol a bevételek és költségek egyenlők, így nincs nyereség vagy veszteség.",
+      "szoveg_kontextus": "A cég a második évben érte el a Break-Even Point szintjét."
+    },
+    {
+      "idegen_szo": "Price-to-Earnings Ratio",
+      "jelentes1": "Ár/nyereség mutató",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A részvény árának aránya az egy részvényre jutó nyereséghez.",
+      "szoveg_kontextus": "A befektetők gyakran vizsgálják a Price-to-Earnings Ratio értékét a részvények értékelésénél."
+    },
+    {
+      "idegen_szo": "Opportunity Cost",
+      "jelentes1": "Alternatív költség",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az elmaradt haszon, ami a másik lehetőség választásával feláldozásra kerül.",
+      "szoveg_kontextus": "A beruházási döntésnél figyelembe kell venni az Opportunity Cost értékét."
+    },
+    {
+      "idegen_szo": "Capital Expenditure",
+      "jelentes1": "Tőkeberuházás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Hosszú távú eszközök beszerzésére vagy fejlesztésére fordított kiadás.",
+      "szoveg_kontextus": "A vállalat Capital Expenditure költségei megnőttek az új gyártósor telepítése miatt."
+    },
+    {
+      "idegen_szo": "Cash Flow Statement",
+      "jelentes1": "Pénzforgalmi kimutatás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Pénzügyi kimutatás, amely bemutatja a vállalat pénzbevételeit és -kiadásait egy időszak alatt.",
+      "szoveg_kontextus": "A Cash Flow Statement elemzése kulcsfontosságú a cég likviditási helyzetének megértéséhez."
+    },
+    {
+      "idegen_szo": "Earnings Before Interest and Taxes",
+      "jelentes1": "Kamat és adó előtti eredmény",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vállalat működési eredménye, amelyet a kamat- és adófizetés előtt számítanak ki.",
+      "szoveg_kontextus": "Az EBIT növekedése a vállalat hatékonyságának javulását jelzi."
+    },
+    {
+      "idegen_szo": "Debt-to-Equity Ratio",
+      "jelentes1": "Adósság/sajáttőke arány",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vállalat összes kötelezettségének aránya a saját tőkéhez.",
+      "szoveg_kontextus": "A magas Debt-to-Equity Ratio növeli a pénzügyi kockázatot."
+    },
+    {
+      "idegen_szo": "Market Capitalization",
+      "jelentes1": "Piaci kapitalizáció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vállalat összes részvényének piaci értéke.",
+      "szoveg_kontextus": "A Market Capitalization alapján a cég a nagyvállalatok közé sorolható."
+    },
+    {
+      "idegen_szo": "Weighted Average Cost of Capital",
+      "jelentes1": "Súlyozott átlagos tőkeköltség",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vállalat tőkéjének átlagos költsége, a finanszírozási források arányával súlyozva.",
+      "szoveg_kontextus": "A beruházások értékelésénél a WACC kulcsfontosságú tényező."
+    },
+    {
+      "idegen_szo": "Alpha",
+      "jelentes1": "Abszolút hozamprémium",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy befektetés hozamának többlete a referenciaindex teljesítményéhez képest.",
+      "szoveg_kontextus": "A portfóliókezelő magas Alpha értéket ért el a piaci átlaghoz képest."
+    },
+    {
+      "idegen_szo": "Beta",
+      "jelentes1": "Piaci kockázati mutató",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy részvény árfolyamának érzékenysége a piaci mozgásokra.",
+      "szoveg_kontextus": "A magas Beta nagyobb árfolyam-ingadozást jelez a piaci átlaghoz képest."
+    },
+    {
+      "idegen_szo": "Hedging",
+      "jelentes1": "Kockázatfedezés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Pénzügyi technika a piaci kockázatok mérséklésére derivatív ügyletekkel.",
+      "szoveg_kontextus": "A vállalat devizakockázatának csökkentésére Hedging stratégiát alkalmazott."
+    },
+    {
+      "idegen_szo": "Arbitrage",
+      "jelentes1": "Arbitrázs",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kockázatmentes nyereség elérése az árkülönbségek kihasználásával különböző piacokon.",
+      "szoveg_kontextus": "A kereskedő arbitrázs ügylettel profitált a devizapiacok közötti árkülönbségből."
+    },
+    {
+      "idegen_szo": "Derivatives",
+      "jelentes1": "Származtatott ügyletek",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan pénzügyi eszközök, melyek értéke más alapeszközök árfolyamától függ.",
+      "szoveg_kontextus": "A Derivatives piac likviditása kulcsfontosságú a kockázatkezelésben."
+    }
+  ]
+}

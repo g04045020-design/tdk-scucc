@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Szó és Fogalom Tanuló Környezet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .count {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        .flash-message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .admin-actions {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .empty-message {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Admin Panel - Szó és Fogalom Tanuló Környezet</h1>
+        
+        <!-- Flash üzenetek -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Admin műveletek -->
+        <div class="admin-actions">
+            <a href="/" class="btn btn-primary">← Vissza a főoldalra</a>
+            <a href="/load_initial_data" class="btn btn-primary">📥 Kezdeti adatok betöltése</a>
+            <a href="/admin/rebuild_db" class="btn btn-primary" onclick="return confirm('Biztosan újraépíted az adatbázis sémáját? A meglévő adatok megmaradnak.')">🔨 Adatbázis újraépítése</a>
+            <a href="/admin/clear_all" class="btn btn-danger" onclick="return confirm('Biztosan törölni szeretnéd az összes adatot?')">🗑️ Összes adat törlése</a>
+            <a href="/admin/clear_task_history" class="btn" style="background-color: orange; color: white;" onclick="return confirm('Biztosan törölni szeretnéd az összes feladatelőzményt? Ez a művelet nem érinti a felhasználókat, szókészleteket vagy szavakat.')">🧹 Feladatelőzmények törlése</a>
+        </div>
+        
+        <!-- Regisztrációs kódok -->
+        <div class="section">
+            <div class="section-title">🔑 Regisztrációs kódok</div>
+            <form method="POST" action="/admin/regkod_uj" style="margin-bottom:20px; display: flex; gap: 10px; align-items: center;">
+                <input type="text" name="regkod_kulcs" id="regkod_kulcs_input" placeholder="Új kód" required maxlength="30" style="width:250px;">
+                <button type="button" class="btn btn-primary" onclick="generateRandomCode()">🔄 Generálás</button>
+                <input type="number" name="regkod_hasznalhatosag" placeholder="Használhatóság" min="1" value="1" required style="width:100px;">
+                <input type="text" name="leiras" placeholder="Leírás" value="Nincs leírás" required style="width:100px;">
+                <button type="submit" class="btn btn-primary">➕ Hozzáadás</button>
+            </form>
+            <script>
+            function generateRandomCode() {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let code = '';
+                for (let i = 0; i < 30; i++) {
+                    code += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                document.getElementById('regkod_kulcs_input').value = code;
+            }
+            </script>
+            {% if regkodok %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kulcs</th>
+                        <th>Használhatóság</th>
+                        <th>Leiras</th>
+                        <th>Műveletek</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for kod in regkodok %}
+                    <tr>
+                        <form method="POST" action="/admin/regkod_szerk/{{ kod[0] }}">
+                            <td>{{ kod[0] }}</td>
+                            <td><span style="font-family:monospace;">{{ kod[1] }}</span></td>
+                            <td><input type="number" name="regkod_hasznalhatosag" value="{{ kod[2] }}" min="0" required style="width:80px;"></td>
+                            <td><input type="text" name="leiras" value="{{ kod[3] }}" required style="width:220px;"></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">💾 Mentés</button>
+                        </form>
+                        <form method="POST" action="/admin/regkod_torol/{{ kod[0] }}" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Biztosan törlöd ezt a kódot?')">🗑️ Törlés</button>
+                        </form>
+                            </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="empty-message">Nincsenek regisztrációs kódok az adatbázisban.</div>
+            {% endif %}
+        </div>
+
+        <!-- SQL Parancs Futtató -->
+        <div class="section">
+            <div class="section-title">⚡ SQL Parancs Futtató</div>
+            <p>select * from AlfeladatBeirasos<br>
+                select * from BeirasosFeladat<br>
+                <br>
+                select * from AlfeladatKivalasztasos<br>
+                select * from KivalasztasosFeladat<br>
+                <br>
+                select * from Parok<br>
+                select * from AlfeladatParositasos<br>
+                select * from ParositasosFeladat<br>
+                <br>   
+                select * from Szokeszletek<br>
+                UPDATE Szokeszletek SET Tulajdonos = "?,?" WHERE SzokeszletID = ?<br>
+                </p>
+            <form method="POST" action="/admin/sql_execute" style="margin-bottom:20px;">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <textarea name="sql_command" id="sql_command" placeholder="Írd be az SQL parancsot..." required style="width:100%; height:100px; font-family:monospace; padding:10px; border:1px solid #ccc; border-radius:4px; resize:vertical;"></textarea>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button type="submit" class="btn btn-primary">🚀 Futtatás</button>
+                        <span style="color: #666; font-size: 14px;">⚠️ Figyelem: Ez a funkció közvetlenül módosítja az adatbázist!</span>
+                    </div>
+                </div>
+            </form>
+            {% if sql_result_history %}
+                <div class="sql-result-history">
+                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <h4>📊 SQL Eredmények (legutóbbi elöl):</h4>
+                        <form method="POST" action="/admin/clear_sql_history" style="margin:0;">
+                            <button type="submit" class="btn btn-secondary">🗑️ Eredmény törlése</button>
+                        </form>
+                    </div>
+                    {% for sql_result in sql_result_history %}
+                        <div class="sql-result" style="margin-bottom: 30px; border: 1px solid #ccc; border-radius: 6px; padding: 12px; background: #fafafa;">
+                            <div style="font-family:monospace; color:#333; margin-bottom:6px;"><b>Parancs:</b> <span>{{ sql_result.sql }}</span></div>
+                            {% if sql_result.error %}
+                                <div class="sql-error">
+                                    <strong>❌ Hiba:</strong> {{ sql_result.error }}
+                                </div>
+                            {% else %}
+                                {% if sql_result.affected_rows is defined %}
+                                    <div class="sql-success">
+                                        <strong>✅ Sikeres végrehajtás:</strong> {{ sql_result.affected_rows }} sor érintett
+                                    </div>
+                                {% endif %}
+                                {% if sql_result.data %}
+                                    <div class="sql-data">
+                                        <strong>📋 Adatok ({{ sql_result.data|length }} sor):</strong>
+                                        <div style="overflow-x: auto; margin-top: 10px;">
+                                            <table>
+                                                {% if sql_result.data %}
+                                                    <thead>
+                                                        <tr>
+                                                            {% for column in sql_result.columns %}
+                                                                <th>{{ column }}</th>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for row in sql_result.data %}
+                                                            <tr>
+                                                                {% for cell in row %}
+                                                                    <td style="border: 1px solid #ddd; padding: 6px; text-align: left;">{{ cell if cell is not none else '' }}</td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                {% endif %}
+                                            </table>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <script>
+            function clearSqlResult() {
+                const resultDiv = document.querySelector('.sql-result-history');
+                if (resultDiv) {
+                    resultDiv.remove();
+                }
+            }
+            </script>
+        </div>
+
+        <!-- Felhasználók -->
+        <div class="section">
+            <div class="section-title">👥 Felhasználók</div>
+            <div class="count">Összesen: {{ diakok|length }} felhasználó</div>
+            {% if diakok %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Azonosító Kód</th>
+                            <th>Email</th>
+                            <th>Tanult Szak</th>
+                            <th>Angol Szint</th>
+                            <th>Életkor</th>
+                            <th>Regisztrációs kód ID</th>
+                            <th>Regisztráció dátuma</th>
+                            <th>Vélemény</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for diak in diakok %}
+                        <tr>
+                            <td>{{ diak[0] }}</td>
+                            <td>{{ diak[1] }}</td>
+                            <td>{{ diak[3] }}</td>
+                            <td>{{ diak[4] }}</td>
+                            <td>{{ diak[5] }}</td>
+                            <td>{{ diak[6] }}</td>
+                            <td>{{ diak[7] }}</td>
+                            <td>
+                                {% if diak[8] %}
+                                    <div class="velemeny-preview" title="{{ diak[8] }}">
+                                        {{ diak[8][:50] }}{% if diak[8]|length > 50 %}...{% endif %}
+                                    </div>
+                                {% else %}
+                                    <span class="no-velemeny">Nincs vélemény</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="empty-message">Nincsenek felhasználók az adatbázisban.</div>
+            {% endif %}
+        </div>
+        
+        <!-- Választható szakok -->
+        <div class="section">
+            <div class="section-title">🎓 Választható Szakok</div>
+            <div class="count">Összesen: {{ szakok|length }} szak</div>
+            {% if szakok %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Szak Név</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for szak in szakok %}
+                        <tr>
+                            <td>{{ szak[0] }}</td>
+                            <td>{{ szak[1] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="empty-message">Nincsenek szakok az adatbázisban.</div>
+            {% endif %}
+        </div>
+        
+        <!-- Egyedi szaktudás -->
+        <div class="section">
+            <div class="section-title">🔬 Egyedi Szaktudás</div>
+            <div class="count">Összesen: {{ egyedi_szaktudasok|length }} rekord</div>
+            {% if egyedi_szaktudasok %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Azonosító Kód</th>
+                            <th>Gépészet</th>
+                            <th>Űrkutatás</th>
+                            <th>Kvantumszámítás</th>
+                            <th>Biotechnológia</th>
+                            <th>Geológia</th>
+                            <th>Nanotechnológia</th>
+                            <th>Gazdasági elemzés</th>
+                            <th>Kriminológia</th>
+                            <th>Genetika</th>
+                            <th>Meteorológia</th>
+                            <th>Adatbányászat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for szaktudas in egyedi_szaktudasok %}
+                        <tr>
+                            <td>{{ szaktudas[0] }}</td>
+                            <td>{{ "Igen" if szaktudas[1] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[2] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[3] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[4] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[5] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[6] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[7] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[8] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[9] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[10] else "Nem" }}</td>
+                            <td>{{ "Igen" if szaktudas[11] else "Nem" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="empty-message">Nincs egyedi szaktudás az adatbázisban.</div>
+            {% endif %}
+        </div>
+        
+        <!-- Szókeszletek -->
+        <div class="section">
+            <div class="section-title">📚 Szókeszletek</div>
+            <div class="count">Összesen: {{ szokeszlet_adatok|length }} szókeszlet</div>
+            {% if szokeszlet_adatok %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Név</th>
+                            <th>Tulajdonos</th>
+                            <th>Szavak száma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for szokeszlet in szokeszlet_adatok %}
+                        <tr>
+                            <td>{{ szokeszlet.id }}</td>
+                            <td>{{ szokeszlet.nev }}</td>
+                            <td>{{ szokeszlet.tulajdonos or "Nincs" }}</td>
+                            <td>{{ szokeszlet.szavak_szama }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="empty-message">Nincsenek szókeszletek az adatbázisban.</div>
+            {% endif %}
+        </div>
+        
+        <!-- Szavak -->
+        <div class="section">
+            <div class="section-title">📖 Szavak</div>
+            <div class="count">Összesen: {{ szavak|length }} szó</div>
+            {% if szavak %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Szókeszlet ID</th>
+                            <th>Idegen Szó</th>
+                            <th>Jelentés 1</th>
+                            <th>Jelentés 2</th>
+                            <th>Jelentés 3</th>
+                            <th>Jelentés 4</th>
+                            <th>Jelentés 5</th>
+                            <th>Fonetika</th>
+                            <th>Leírás</th>
+                            <th>Szövegkörnyezet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for szo in szavak %}
+                        <tr>
+                            <td>{{ szo[0] }}</td>
+                            <td>{{ szo[1] }}</td>
+                            <td>{{ szo[2] }}</td>
+                            <td>{{ szo[3] }}</td>
+                            <td>{{ szo[4] }}</td>
+                            <td>{{ szo[5] }}</td>
+                            <td>{{ szo[6] }}</td>
+                            <td>{{ szo[7] }}</td>
+                            <td>{{ szo[8] }}</td>
+                            <td>{{ szo[9] }}</td>
+                            <td>{{ szo[10] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="empty-message">Nincsenek szavak az adatbázisban.</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 

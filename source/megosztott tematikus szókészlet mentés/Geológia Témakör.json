@@ -1,0 +1,269 @@
+{
+  "szokeszlet_nev": "Geológia Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Petrology",
+      "jelentes1": "kőzettan",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kőzetek eredetét, összetételét és átalakulását vizsgáló tudományág.",
+      "szoveg_kontextus": "A petrology segít megérteni a vulkanikus és üledékes kőzetek kialakulását."
+    },
+    {
+      "idegen_szo": "Stratigraphy",
+      "jelentes1": "rétegtan",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A földtani rétegek vizsgálata, sorrendjük és koruk meghatározása.",
+      "szoveg_kontextus": "A stratigraphy kulcsfontosságú az olajlelőhelyek feltárásában."
+    },
+    {
+      "idegen_szo": "Mineralogy",
+      "jelentes1": "ásványtan",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az ásványok tulajdonságait és osztályozását vizsgáló tudomány.",
+      "szoveg_kontextus": "A mineralogy segít azonosítani a bányászott ércek típusát."
+    },
+    {
+      "idegen_szo": "Geochronology",
+      "jelentes1": "földtani kormeghatározás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kőzetek és fosszíliák korának meghatározásával foglalkozó tudományág.",
+      "szoveg_kontextus": "A geochronology rádióizotópos módszerekkel pontosítja a földtörténeti időskálát."
+    },
+    {
+      "idegen_szo": "Tectonics",
+      "jelentes1": "tektonika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A földkéreg szerkezetének és mozgásainak tanulmányozása.",
+      "szoveg_kontextus": "A tectonics elmélete magyarázza a kontinensek vándorlását."
+    },
+    {
+      "idegen_szo": "Seismology",
+      "jelentes1": "szeizmológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A földrengések és szeizmikus hullámok tanulmányozásával foglalkozó tudomány.",
+      "szoveg_kontextus": "A seismology segít a földrengésveszélyes zónák feltérképezésében."
+    },
+    {
+      "idegen_szo": "Paleontology",
+      "jelentes1": "őslénytankutatás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A fosszíliák és egykori életformák vizsgálatát végző tudományág.",
+      "szoveg_kontextus": "A paleontology alapján rekonstruálhatók a kihalt fajok."
+    },
+    {
+      "idegen_szo": "Geomorphology",
+      "jelentes1": "felszínalaktan",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A felszíni formák kialakulását és fejlődését vizsgáló tudomány.",
+      "szoveg_kontextus": "A geomorphology elemzi a folyók által létrehozott völgyeket."
+    },
+    {
+      "idegen_szo": "Hydrogeology",
+      "jelentes1": "hidrogeológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A felszín alatti vízkészletek és áramlásuk vizsgálata.",
+      "szoveg_kontextus": "A hydrogeology kulcsfontosságú az ivóvízbázisok védelmében."
+    },
+    {
+      "idegen_szo": "Volcanology",
+      "jelentes1": "vulkanológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vulkánok működését és kitöréseit tanulmányozó tudományág.",
+      "szoveg_kontextus": "A volcanology figyeli a kitörés előjeleit."
+    },
+    {
+      "idegen_szo": "Sedimentology",
+      "jelentes1": "üledéktudomány",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az üledékek keletkezésével, szállításával és lerakódásával foglalkozó tudomány.",
+      "szoveg_kontextus": "A sedimentology segít megérteni a folyami delták fejlődését."
+    },
+    {
+      "idegen_szo": "Metamorphism",
+      "jelentes1": "átalakulás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kőzetek ásványi összetételének és szerkezetének hő és nyomás hatására történő megváltozása.",
+      "szoveg_kontextus": "A metamorphism magyarázza a pala kialakulását mészkőből."
+    },
+    {
+      "idegen_szo": "Orogeny",
+      "jelentes1": "hegységképződés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A hegységek kialakulásának és fejlődésének folyamata.",
+      "szoveg_kontextus": "Az orogeny során a lemezek ütközése hegyvonulatokat hoz létre."
+    },
+    {
+      "idegen_szo": "Lithology",
+      "jelentes1": "kőzetleírás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A kőzetek fizikai jellemzőinek és típusainak leírása.",
+      "szoveg_kontextus": "A lithology segít az olajkutatási rétegek azonosításában."
+    },
+    {
+      "idegen_szo": "Geophysics",
+      "jelentes1": "geofizika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A Föld fizikai tulajdonságait vizsgáló tudományág.",
+      "szoveg_kontextus": "A geophysics műszerei képesek feltérképezni a föld alatti szerkezeteket."
+    },
+    {
+      "idegen_szo": "Paleoclimatology",
+      "jelentes1": "ősklímatudomány",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A múltbeli éghajlati viszonyokat vizsgáló tudományág.",
+      "szoveg_kontextus": "A paleoclimatology adatai segítenek a jövőbeli klímaváltozás modellezésében."
+    },
+    {
+      "idegen_szo": "Geochemistry",
+      "jelentes1": "geokémia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A Föld kémiai összetételét és elemeinek eloszlását tanulmányozó tudomány.",
+      "szoveg_kontextus": "A geochemistry elemzi a vulkáni kőzetek nyomelem-tartalmát."
+    },
+    {
+      "idegen_szo": "Speleology",
+      "jelentes1": "barlangkutatás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A barlangok kialakulását, szerkezetét és élővilágát vizsgáló tudomány.",
+      "szoveg_kontextus": "A speleology feltárja a karsztvidék föld alatti folyamatait."
+    },
+    {
+      "idegen_szo": "Geostatistics",
+      "jelentes1": "geostatisztika",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A földtani adatok statisztikai elemzésével foglalkozó módszertan.",
+      "szoveg_kontextus": "A geostatistics segít az érctelepek kiterjedésének becslésében."
+    },
+    {
+      "idegen_szo": "Paleoseismology",
+      "jelentes1": "ősrengéstan",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A múltbeli földrengések nyomainak kutatásával foglalkozó tudomány.",
+      "szoveg_kontextus": "A paleoseismology feltárja az ókori földrengések időpontját és erejét."
+    },
+    {
+      "idegen_szo": "Plate tectonics",
+      "jelentes1": "lemezek mozgása",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A Föld litoszféráját alkotó kőzetlemezek mozgásának elmélete.",
+      "szoveg_kontextus": "A plate tectonics magyarázza a földrengések és vulkánok eloszlását."
+    },
+    {
+      "idegen_szo": "Eustasy",
+      "jelentes1": "tengerszintváltozás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A globális tengerszint hosszú távú változásainak tanulmányozása.",
+      "szoveg_kontextus": "Az eustasy fontos a part menti üledékes rétegek vizsgálatában."
+    },
+    {
+      "idegen_szo": "Isostasy",
+      "jelentes1": "kéregkiegyenlítődés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A földkéreg függőleges mozgásait leíró egyensúlyi állapot.",
+      "szoveg_kontextus": "Az isostasy magyarázza a gleccserek eltűnése utáni kéregemelkedést."
+    },
+    {
+      "idegen_szo": "Bathymetry",
+      "jelentes1": "mélységtérképezés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A víz alatti felszínek mélységének mérése és feltérképezése.",
+      "szoveg_kontextus": "A bathymetry fontos a tengerfenék domborzatának feltárásában."
+    }
+  ]
+}

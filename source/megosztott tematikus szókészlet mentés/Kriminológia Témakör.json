@@ -1,0 +1,247 @@
+{
+  "szokeszlet_nev": "Kriminológia Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "forensic anthropology",
+      "jelentes1": "igazságügyi antropológia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az emberi maradványok vizsgálata bűnügyi vagy jogi ügyek megoldásához.",
+      "szoveg_kontextus": "A forensic anthropology módszereivel azonosították a több évtizede eltűnt személyt."
+    },
+    {
+      "idegen_szo": "DNA profiling",
+      "jelentes1": "DNS profilalkotás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egyén azonosítása genetikai mintázata alapján.",
+      "szoveg_kontextus": "A DNA profiling kulcsfontosságú bizonyítékot szolgáltatott az ügy lezárásához."
+    },
+    {
+      "idegen_szo": "criminal profiling",
+      "jelentes1": "bűnügyi profilalkotás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Bűnelkövető jellemzőinek meghatározása viselkedésminták alapján.",
+      "szoveg_kontextus": "A nyomozók criminal profiling segítségével szűkítették a gyanúsítottak körét."
+    },
+    {
+      "idegen_szo": "modus operandi",
+      "jelentes1": "működési módszer",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az elkövető jellemző módszere vagy eljárásmódja.",
+      "szoveg_kontextus": "A sorozatgyilkos modus operandi-ja minden esetben hasonló volt."
+    },
+    {
+      "idegen_szo": "trace evidence",
+      "jelentes1": "nyomevidencia",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Apró anyagmaradványok, amelyek bűncselekmény helyszínéről származhatnak.",
+      "szoveg_kontextus": "A helyszínen talált trace evidence segített összekapcsolni a gyanúsítottat a bűnténnyel."
+    },
+    {
+      "idegen_szo": "ballistics analysis",
+      "jelentes1": "ballisztikai elemzés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Fegyverek és lövedékek vizsgálata bűnügyi nyomozás során.",
+      "szoveg_kontextus": "A ballistics analysis bizonyította, hogy a golyó a gyanúsított fegyveréből származott."
+    },
+    {
+      "idegen_szo": "victimology",
+      "jelentes1": "áldozattan",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az áldozatok jellemzőinek és életkörülményeinek vizsgálata a bűncselekmény összefüggéseiben.",
+      "szoveg_kontextus": "A victimology segített feltárni a támadás mögötti motivációt."
+    },
+    {
+      "idegen_szo": "geographic profiling",
+      "jelentes1": "földrajzi profilalkotás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A bűncselekmények helyszíneinek elemzése az elkövető tartózkodási helyének becslésére.",
+      "szoveg_kontextus": "A geographic profiling segítségével a rendőrség szűkítette a keresési területet."
+    },
+    {
+      "idegen_szo": "latent fingerprint",
+      "jelentes1": "rejtett ujjlenyomat",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Szabad szemmel nem látható ujjnyom, amely speciális módszerekkel kimutatható.",
+      "szoveg_kontextus": "A helyszínen talált latent fingerprint egyezett a gyanúsított adataival."
+    },
+    {
+      "idegen_szo": "psychological autopsy",
+      "jelentes1": "pszichológiai boncolás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Egy elhunyt mentális állapotának rekonstrukciója halála előtt.",
+      "szoveg_kontextus": "A psychological autopsy segített tisztázni, hogy öngyilkosság történt-e."
+    },
+    {
+      "idegen_szo": "crime scene reconstruction",
+      "jelentes1": "bűntényhelyszín rekonstrukció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A bűncselekmény eseményeinek újraalkotása a nyomok alapján.",
+      "szoveg_kontextus": "A crime scene reconstruction során a nyomozók megállapították az események sorrendjét."
+    },
+    {
+      "idegen_szo": "bloodstain pattern analysis",
+      "jelentes1": "vérfoltminta elemzés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A vércseppek és mintázatok vizsgálata a bűncselekmény körülményeinek feltárására.",
+      "szoveg_kontextus": "A bloodstain pattern analysis megmutatta, hogy a sértett mozgott a támadás közben."
+    },
+    {
+      "idegen_szo": "chain of custody",
+      "jelentes1": "bizonyítéklánc",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A bizonyítékok kezelésének és átadásának dokumentált folyamata.",
+      "szoveg_kontextus": "A chain of custody megsértése miatt a bizonyíték nem volt felhasználható."
+    },
+    {
+      "idegen_szo": "offender profiling",
+      "jelentes1": "elkövetői profilalkotás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az elkövető személyiségének és viselkedésének elemzése.",
+      "szoveg_kontextus": "Az offender profiling alapján az elkövető valószínűleg 30-40 év közötti férfi."
+    },
+    {
+      "idegen_szo": "cold case",
+      "jelentes1": "megoldatlan ügy",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Régen történt, de fel nem derített bűncselekmény.",
+      "szoveg_kontextus": "A nyomozók új bizonyítékokat találtak egy 20 éves cold case ügyben."
+    },
+    {
+      "idegen_szo": "recidivism",
+      "jelentes1": "visszaesés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az elkövető ismételt bűncselekmény elkövetése.",
+      "szoveg_kontextus": "A recidivism aránya magasabb a rövid büntetést kapott elítélteknél."
+    },
+    {
+      "idegen_szo": "victim precipitation",
+      "jelentes1": "áldozati provokáció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan helyzet, ahol az áldozat viselkedése hozzájárul a bűncselekményhez.",
+      "szoveg_kontextus": "A victim precipitation szerepet játszott a konfliktus elfajulásában."
+    },
+    {
+      "idegen_szo": "spree killing",
+      "jelentes1": "sorozatos gyilkosság",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Több gyilkosság rövid idő alatt, előre megfontolt szándékkal.",
+      "szoveg_kontextus": "A spree killing során három városban is történt támadás egy nap alatt."
+    },
+    {
+      "idegen_szo": "criminogenic needs",
+      "jelentes1": "bűnözési hajlamot befolyásoló tényezők",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan pszichológiai és szociális tényezők, amelyek növelik a bűnismétlés kockázatát.",
+      "szoveg_kontextus": "A rehabilitációs program a criminogenic needs csökkentésére összpontosított."
+    },
+    {
+      "idegen_szo": "cyber forensics",
+      "jelentes1": "kiber-igazságügyi vizsgálat",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Digitális eszközök adatainak gyűjtése és elemzése bűnügyi nyomozás során.",
+      "szoveg_kontextus": "A cyber forensics segítségével nyomozták ki az online csalást."
+    },
+    {
+      "idegen_szo": "eyewitness testimony",
+      "jelentes1": "szemtanú vallomás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan bizonyíték, amelyet a bűncselekmény szemtanúja szolgáltat.",
+      "szoveg_kontextus": "Az eyewitness testimony döntő szerepet játszott a bírósági ítéletben."
+    },
+    {
+      "idegen_szo": "MIR (Major Incident Room)",
+      "jelentes1": "kiemelt incidensek nyomozási központja",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Speciális nyomozási központ, amely súlyos bűnügyek koordinációját végzi.",
+      "szoveg_kontextus": "A rendőrség az MIR-ben irányította a sorozatgyilkosság nyomozását."
+    }
+  ]
+}

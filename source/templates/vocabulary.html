@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saját szókészletek - Szó és Fogalom Tanuló Környezet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .visible { display: table-cell; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="vocabulary-page">
+    <div class="container">
+        <!-- Breadcrumb navigáció -->
+        <div class="breadcrumb">
+            <a href="/">🏠 Főoldal</a>
+            <span class="separator">/</span>
+            <a href="/dashboard">Dashboard</a>
+            <span class="separator">/</span>
+            <span>Saját szókészletek</span>
+        </div>
+        <div class="header">
+            <h1>📚 Saját szókészletek</h1>
+            <div class="user-info">
+                <div class="user-name">{{ user_name }}</div>
+                <div class="user-email">{{ user_email }}</div>
+                <a href="/logout" class="logout-btn">Kijelentkezés</a>
+            </div>
+        </div>
+        <!-- Flash üzenetek -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ 'success' if category == 'success' else 'error' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <!-- Szókészlet listák -->
+        <div class="szokeszlet-lista">
+            <h2>Szókészletek</h2>
+            {% if sajat_szokeszletek or (is_admin and (public_szokeszletek or megosztott_szokeszletek)) %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th>Típus</th>
+                        <th>Művelet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sz in sajat_szokeszletek %}
+                    <tr style="background-color:#e8f5e9;"> <!-- zöld hátterű saját -->
+                        <td>{{ sz[1] }}</td>
+                        <td>Saját</td>
+                        <td>
+                            <form method="post" style="display:inline;">
+                                <input type="hidden" name="action" value="edit">
+                                <input type="hidden" name="szokeszlet_id" value="{{ sz[0] }}">
+                                <button type="submit" class="edit-btn">Szerkesztés</button>
+                            </form>
+                            <form method="post" style="display:inline;" onsubmit="return confirm('Biztosan törölni szeretnéd ezt a szókészletet?');">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="szokeszlet_id" value="{{ sz[0] }}">
+                                <button type="submit" class="remove-btn" style="margin-left:8px;">Törlés</button>
+                            </form>
+                            <a href="/vocabulary/export/{{ sz[0] }}" class="export-btn" style="margin-left:8px;">Exportálás JSON-be</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% if is_admin %}
+                        {% for sz in public_szokeszletek %}
+                        <tr style="background-color:#fdecea;"> <!-- halványpiros publikus -->
+                            <td>{{ sz[1] }}</td>
+                            <td>Publikus</td>
+                            <td>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="action" value="edit">
+                                    <input type="hidden" name="szokeszlet_id" value="{{ sz[0] }}">
+                                    <button type="submit" class="edit-btn">Szerkesztés</button>
+                                </form>
+                                <form method="post" style="display:inline;" onsubmit="return confirm('Biztosan törölni szeretnéd ezt a szókészletet?');">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="szokeszlet_id" value="{{ sz[0] }}">
+                                    <button type="submit" class="remove-btn" style="margin-left:8px;">Törlés</button>
+                                </form>
+                                <a href="/vocabulary/export/{{ sz[0] }}" class="export-btn" style="margin-left:8px;">Exportálás JSON-be</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% for sz in megosztott_szokeszletek %}
+                        <tr style="background-color:#e3f2fd;"> <!-- kék megosztott -->
+                            <td>{{ sz[1] }}</td>
+                            <td>Megosztott</td>
+                            <td>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="action" value="edit">
+                                    <input type="hidden" name="szokeszlet_id" value="{{ sz[0] }}">
+                                    <button type="submit" class="edit-btn">Szerkesztés</button>
+                                </form>
+                                <form method="post" style="display:inline;" onsubmit="return confirm('Biztosan törölni szeretnéd ezt a szókészletet?');">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="szokeszlet_id" value="{{ sz[0] }}">
+                                    <button type="submit" class="remove-btn" style="margin-left:8px;">Törlés</button>
+                                </form>
+                                <a href="/vocabulary/export/{{ sz[0] }}" class="export-btn" style="margin-left:8px;">Exportálás JSON-be</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="info-text">Még nincs saját szókészleted. Hozz létre egyet!</div>
+            {% endif %}
+        </div>
+        <!-- Új szókészlet létrehozása gomb -->
+        <form method="post" style="text-align:center;">
+            <input type="hidden" name="action" value="create">
+            <button type="submit" class="uj-btn">+ Új szókészlet létrehozása</button>
+        </form>
+        <!-- Dinamikus munkafelület -->
+        <div class="munkafelulet">
+            {% if edit_mode is defined and edit_mode and szerkesztendo_id is defined %}
+                {% set szerk_szokeszlet = (osszes_szerkesztheto_szokeszlet | selectattr('0', 'equalto', szerkesztendo_id) | list | first) %}
+                {% if szerk_szokeszlet %}
+                <h2>Szókészlet szerkesztése: <span style="color:#4CAF50">{{ szerk_szokeszlet[1] }}</span></h2>
+                <form method="post" id="spec_form">
+                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" name="szokeszlet_id" value="{{ szerk_szokeszlet[0] }}">
+                    <input type="hidden" name="save" value="1">
+                    <input type="hidden" name="index" id="index_kontener" value="-1">
+                    <div class="form-group">
+                        <label for="szokeszlet_nev">Szókészlet neve:</label>
+                        <input type="text" id="szokeszlet_nev" name="szokeszlet_nev" value="{{ szerk_szokeszlet[1] }}" required>
+                    </div>
+                    <div class="info-text">
+                        <p style="color: red;">A szerkeztett szavak pontszáma ha <strong>250 alatt</strong> van, akkor visszaáll <strong>250 pont-ra</strong>. Ha fölötte van akkor 100 pont hozzáadódik a pontszámához.</pp>
+                    </div>
+                    <div class="info-text">
+                        Itt szerkesztheted a szókészlet nevét, illetve hozzáadhatsz, módosíthatsz vagy törölhetsz szavakat, kifejezéseket, fogalmakat.<br>
+                        Egy szóhoz akár 5 jelentést is megadhatsz, valamint opcionálisan fonetikai leírást, részletes magyarázatot és szövegkörnyezetet is.
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="{{ 'visible' if is_admin else 'hidden' }}">ID</th>
+                                <th>Szó / Kifejezés / Fogalom</th>
+                                <th>Jelentés 1*</th>
+                                <th>Jelentés 2</th>
+                                <th>Jelentés 3</th>
+                                <th>Jelentés 4</th>
+                                <th>Jelentés 5</th>
+                                <th>Fonetika</th>
+                                <th>Leírás</th>
+                                <th>Szövegkörnyezet</th>
+                                <th>Törlés</th>
+                            </tr>
+                        </thead>
+                        <tbody id="szavak-tbody">
+                            {% set szavak = szokeszlet_szavak.get(szerk_szokeszlet[0], []) %}
+                            {% for szo in szavak %}
+                            <tr class="szo-sor">
+                                <td class="{{ 'visible' if is_admin else 'hidden' }}"><input style="color:gray" type="text" name="szo_{{ loop.index0 }}_ID" value="{{ szo[0] }}" readonly></td>
+                                <td><input style="color:gray" type="text" name="szo_{{ loop.index0 }}_idegen_szo" value="{{ szo[2] }}" readonly></td>
+                                <td><input style="color:gray" type="text" name="szo_{{ loop.index0 }}_jelentes1" value="{{ szo[3] }}" readonly></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_jelentes2" value="{{ szo[4] }}"></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_jelentes3" value="{{ szo[5] }}"></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_jelentes4" value="{{ szo[6] }}"></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_jelentes5" value="{{ szo[7] }}"></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_fonetika" value="{{ szo[8] }}"></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_leiras" value="{{ szo[9] }}"></td>
+                                <td><input type="text" name="szo_{{ loop.index0 }}_szoveg_kontextus" value="{{ szo[10] }}"></td>
+                                <td><button type="button" class="remove-btn" onclick="removeRow(this)">Törlés</button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <button type="button" class="add-szo-btn" onclick="addRow()">+ Új szó/kifejezés/fogalom hozzáadása</button>
+                    <br><br>
+                    <button type="submit" class="save-btn">Mentés</button>
+                </form>
+                <script>
+                var index_kontener = document.getElementById('index_kontener');
+                var index = document.getElementById('szavak-tbody').rows.length;
+                index_kontener.value = index
+                function addRow() {
+                    var tbody = document.getElementById('szavak-tbody');
+                    var index = tbody.rows.length;
+                    var row = tbody.insertRow();
+                    row.className = 'szo-sor';
+                    var html = '';
+                    html += '<td class="{{ "visible" if is_admin else "hidden" }}"><input style="color:gray" type="text" name="szo_' + index + 'ID" readonly></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_idegen_szo" required></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes1" required></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes2"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes3"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes4"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes5"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_fonetika"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_leiras"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_szoveg_kontextus"></td>';
+                    html += '<td><button type="button" class="remove-btn" onclick="removeRow(this)">Törlés</button></td>';
+                    row.innerHTML = html;
+                }
+                function removeRow(btn) {
+                    var row = btn.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                }
+                </script>
+                {% endif %}
+            {% elif request.method == 'POST' and request.form.get('action') == 'create' %}
+                <!-- JSON fájl feltöltés -->
+                <div class="form-group">
+                    <label for="json_file">Autómatikus kitöltéshez:<br>JSON fájlt importálás</label>
+                    <input type="file" id="json_file" name="json_file" accept=".json" style="margin-top: 10px;">
+                </div>
+                <h2>Új szókészlet létrehozása</h2>
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" name="save" value="1">
+                    <div class="form-group">
+                        <label for="szokeszlet_nev">Szókészlet neve:</label>
+                        <input type="text" id="szokeszlet_nev" name="szokeszlet_nev" required>
+                    </div>
+                    <div class="info-text">
+                        Itt hozhatsz létre új szókészletet, amelyhez szavakat, kifejezéseket, fogalmakat adhatsz hozzá.<br>
+                        Egy szóhoz akár 5 jelentést is megadhatsz, valamint opcionálisan fonetikai leírást, részletes magyarázatot és szövegkörnyezetet is.
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Szó / Kifejezés / Fogalom</th>
+                                <th>Jelentés 1*</th>
+                                <th>Jelentés 2</th>
+                                <th>Jelentés 3</th>
+                                <th>Jelentés 4</th>
+                                <th>Jelentés 5</th>
+                                <th>Fonetika</th>
+                                <th>Leírás</th>
+                                <th>Szövegkörnyezet</th>
+                                <th>Törlés</th>
+                            </tr>
+                        </thead>
+                        <tbody id="szavak-tbody">
+                        </tbody>
+                    </table>
+                    <button type="button" class="add-szo-btn" onclick="addRow()">+ Új szó/kifejezés/fogalom hozzáadása</button>
+                    <br><br>
+                    <button type="submit" class="save-btn">Mentés</button>
+                </form>
+                <script>
+                function addRow() {
+                    var tbody = document.getElementById('szavak-tbody');
+                    var index = tbody.rows.length;
+                    var row = tbody.insertRow();
+                    row.className = 'szo-sor';
+                    var html = '';
+                    html += '<td><input type="text" name="szo_' + index + '_idegen_szo" required></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes1" required></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes2"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes3"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes4"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_jelentes5"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_fonetika"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_leiras"></td>';
+                    html += '<td><input type="text" name="szo_' + index + '_szoveg_kontextus"></td>';
+                    html += '<td><button type="button" class="remove-btn" onclick="removeRow(this)">Törlés</button></td>';
+                    row.innerHTML = html;
+                }
+                function removeRow(btn) {
+                    var row = btn.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                }
+                
+                // JSON fájl feltöltés kezelése
+                document.getElementById('json_file').addEventListener('change', function(event) {
+                    var file = event.target.files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            try {
+                                var data = JSON.parse(e.target.result);
+                                
+                                // Szókészlet név beállítása
+                                if (data.szokeszlet_nev) {
+                                    document.getElementById('szokeszlet_nev').value = data.szokeszlet_nev;
+                                }
+                                
+                                // Szavak hozzáadása
+                                if (data.szavak && Array.isArray(data.szavak)) {
+                                    var tbody = document.getElementById('szavak-tbody');
+                                    tbody.innerHTML = ''; // Töröljük a meglévő sorokat
+                                    
+                                    data.szavak.forEach(function(szo, index) {
+                                        var row = tbody.insertRow();
+                                        row.className = 'szo-sor';
+                                        var html = '';
+                                        html += '<td><input type="text" name="szo_' + index + '_idegen_szo" value="' + (szo.idegen_szo || '') + '" required></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_jelentes1" value="' + (szo.jelentes1 || '') + '" required></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_jelentes2" value="' + (szo.jelentes2 || '') + '"></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_jelentes3" value="' + (szo.jelentes3 || '') + '"></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_jelentes4" value="' + (szo.jelentes4 || '') + '"></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_jelentes5" value="' + (szo.jelentes5 || '') + '"></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_fonetika" value="' + (szo.fonetika || '') + '"></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_leiras" value="' + (szo.leiras || '') + '"></td>';
+                                        html += '<td><input type="text" name="szo_' + index + '_szoveg_kontextus" value="' + (szo.szoveg_kontextus || '') + '"></td>';
+                                        html += '<td><button type="button" class="remove-btn" onclick="removeRow(this)">Törlés</button></td>';
+                                        row.innerHTML = html;
+                                    });
+                                }
+                            } catch (error) {
+                                alert('Hiba a JSON fájl feldolgozásakor: ' + error.message);
+                            }
+                        };
+                        reader.readAsText(file);
+                    }
+                });
+                </script>
+            {% else %}
+                <div class="info-text">Válassz egy szókészletet szerkesztésre, vagy hozz létre újat!</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 

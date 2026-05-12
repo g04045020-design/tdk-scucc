@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Regisztráció</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages-container">
+            {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        
+        <form id="registerForm" method="POST" action="/register">
+            <!-- Alapvető információk -->
+            <div class="section">
+                <div class="section-title">Alapvető információk</div>
+
+                <div class="form-group">
+                    <label for="regisztracios_kod">Regisztrációs kód:</label>
+                    <input type="text" id="regisztracios_kod" name="regisztracios_kod" required maxlength="50" onblur="validateRegCode()" value="{{ formdata.regisztracios_kod if formdata is defined else '' }}">
+                    <div class="help-text">A regisztrációhoz szükséges kódot az oldal készítője biztosítja.</div>
+                    <div class="error" id="regisztracios_kod_error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="neptun_kod">Neptun kód:</label>
+                    <input type="text" id="neptun_kod" name="neptun_kod" maxlength="6" value="{{ formdata.neptun_kod if formdata is defined else '' }}">
+                    <div class="help-text">Ha nem adod meg, automatikusan generálunk egy 5 számjegyű kódot</div>
+                    <div class="error" id="neptun_error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email cím:</label>
+                    <input type="email" id="email" name="email" required value="{{ formdata.email if formdata is defined else '' }}">
+                    <div class="help-text">Ezzel az email címmel tudsz majd bejelentkezni</div>
+                    <div class="error" id="email_error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="jelszo">Jelszó:</label>
+                    <input type="password" id="jelszo" name="jelszo" minlength="8" required value="{{ formdata.jelszo if formdata is defined else '' }}">
+                    <div class="help-text">Minimum 8 karakter, számok és betűk</div>
+                    <div class="error" id="jelszo_error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="jelszo_megerosites">Jelszó megerősítése:</label>
+                    <input type="password" id="jelszo_megerosites" name="jelszo_megerosites" minlength="8" required value="{{ formdata.jelszo_megerosites if formdata is defined else '' }}">
+                    <div class="error" id="jelszo_megerosites_error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eletkor">Életkor:</label>
+                    <input type="number" id="eletkor" name="eletkor" min="10" max="100" required value="{{ formdata.eletkor if formdata is defined else '' }}">
+                    <div class="error" id="eletkor_error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="GDPR">Elfogadom a felhasználási feltételeket <input type="checkbox" style="width: 10px;" id="GDPR" name="GDPR" onclick="alert('Elfogadom az adatkezelési tájékoztatót és ebben a szövegben  az adatkelezési tájékoztató legyen egy link, ha a user rákattint akkor egy pop up-ban jöjjön fel ez:  Adatkezelési tájékoztató (GDPR nyilatkozat) Az alkalmazás használata során személyes adatok (pl. azonosítókód, válaszok, válaszidők, eredmények) kerülhetnek rögzítésre. Ezeket az adatokat kizárólag kutatási és oktatási célokra használjuk fel, az adatkezelés minden esetben az Európai Unió Általános Adatvédelmi Rendeletének (GDPR, 2016/679/EU) megfelelően történik. Az adatok feldolgozása anonimizált formában történik, harmadik fél számára nem kerülnek továbbításra. Az adatok megőrzésének időtartama legfeljebb a kutatás lezárásáig tart, ezt követően törlésre kerülnek. A felhasználónak joga van kérelmezni adataihoz való hozzáférést, azok helyesbítését vagy törlését, valamint korlátozhatja az adatkezelést. Kérdés vagy panasz esetén az adatkezelőhöz, illetve a Nemzeti Adatvédelmi és Információszabadság Hatósághoz fordulhat.')" required></label>
+                </div>
+            </div>
+
+            <!-- Tanulmányi információk -->
+            <div class="section">
+                <div class="section-title">Tanulmányi információk</div>
+                
+                <div class="form-group">
+                    <label for="tanult_szak">Tanult szakhoz tartozó szervezeti egység:</label>
+                    <select id="tanult_szak" name="tanult_szak" required>
+                        <option value="">Válassz szervezeti egységet...</option>
+                        {% for szak in szakok %}
+                        <option value="{{ szak[0] }}" {% if formdata is defined and formdata.tanult_szak == szak[0]|string %}selected{% endif %}>{{ szak[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="angol_szint">Angol nyelvtudás szintje:</label>
+                    <select id="angol_szint" name="angol_szint" required>
+                        <option value="">Válassz szintet...</option>
+                        <option value="00" {% if formdata is defined and formdata.angol_szint == 'Nincs' %}selected{% endif %}>Nincs angoltudás</option>
+                        <option value="A1" {% if formdata is defined and formdata.angol_szint == 'A1' %}selected{% endif %}>A1 - Kezdő</option>
+                        <option value="A2" {% if formdata is defined and formdata.angol_szint == 'A2' %}selected{% endif %}>A2 - Alapszint</option>
+                        <option value="B1" {% if formdata is defined and formdata.angol_szint == 'B1' %}selected{% endif %}>B1 - Középszint</option>
+                        <option value="B2" {% if formdata is defined and formdata.angol_szint == 'B2' %}selected{% endif %}>B2 - Felső középszint</option>
+                        <option value="C1" {% if formdata is defined and formdata.angol_szint == 'C1' %}selected{% endif %}>C1 - Felsőfokú</option>
+                        <option value="C2" {% if formdata is defined and formdata.angol_szint == 'C2' %}selected{% endif %}>C2 - Anyanyelvi szint</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Egyedi szaktudás -->
+            <div class="section">
+                <div class="section-title">Érdeklődési területek</div>
+                
+                <div class="form-group">
+                    <label>Válaszd ki azokat a témákat, amelyek érdekelnek, de nem ismered még behatóan.<br>Minimum 2 téma kiválasztása kötelező!</label>
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="gepeszet" name="gepeszet" value="1" {% if formdata is defined and formdata.gepeszet %}checked{% endif %}>
+                                <label for="gepeszet">Gépi forgácsolás</label>
+                            </div>
+                            <p class="topic-description">
+                                A gépi forgácsolás a fém- és más anyagmegmunkálás egyik legelterjedtebb módszere, amely során a munkadarabról forgács 
+                                formájában távolítanak el anyagot a kívánt geometria elérése érdekében. A témában megismerjük a forgácsolási műveletek 
+                                típusait, a szerszámgépek felépítését és a technológiai paraméterek jelentőségét.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="kvantumszamitas" name="kvantumszamitas" value="1" {% if formdata is defined and formdata.kvantumszamitas %}checked{% endif %}>
+                                <label for="kvantumszamitas">Kvantumszámítástechnika</label>
+                            </div>
+                            <p class="topic-description">
+                                A kvantumszámítástechnika a kvantummechanika törvényeit alkalmazza számítási feladatok elvégzésére, jelentősen 
+                                meghaladva a hagyományos számítógépek képességeit bizonyos problémák esetében. Megismerhetjük a kvantumbitek 
+                                működését, a szuperpozíció és összefonódás jelenségeit, valamint a kvantumalgoritmusok alapjait.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="biotechnologia" name="biotechnologia" value="1" {% if formdata is defined and formdata.biotechnologia %}checked{% endif %}>
+                                <label for="biotechnologia">Biotechnológia</label>
+                            </div>
+                            <p class="topic-description">
+                                A biotechnológia az élő rendszerek és organizmusok tudatos alkalmazásán alapuló tudományág, 
+                                amely a biológia, a kémia és a mérnöki tudományok módszereit ötvözi. A témában betekintünk a modern 
+                                géntechnológia, a molekuláris diagnosztika és a biológiai termékfejlesztés alapfogalmaiba.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="geologia" name="geologia" value="1" {% if formdata is defined and formdata.geologia %}checked{% endif %}>
+                                <label for="geologia">Geológia</label>
+                            </div>
+                            <p class="topic-description">
+                                A geológia a Föld anyagainak, szerkezetének és fejlődéstörténetének tudománya, amely kulcsfontosságú a 
+                                természeti erőforrások bányászatában és a földalatti világ feltárásában. A téma betekintést nyújt a 
+                                kőzetek, ásványok és földtani folyamatok világába.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="nanotechnologia" name="nanotechnologia" value="1" {% if formdata is defined and formdata.nanotechnologia %}checked{% endif %}>
+                                <label for="nanotechnologia">Nanotechnológia</label>
+                            </div>
+                            <p class="topic-description">
+                                A nanotechnológia az anyagok és szerkezetek nanoszkopikus léptékben történő tervezésével és manipulálásával foglalkozik. 
+                                A téma rálátást nyújt, hogyan nyílnak meg új lehetőségek az ipar, az orvostudomány és az elektronika számára ezen a 
+                                forradalmi kutatási területen annak fontosabb fogalmaival és eszközeinek megismerésével.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="gazdasagi_elemzes" name="gazdasagi_elemzes" value="1" {% if formdata is defined and formdata.gazdasagi_elemzes %}checked{% endif %}>
+                                <label for="gazdasagi_elemzes">Gazdasági elemzés</label>
+                            </div>
+                            <p class="topic-description">
+                                A gazdasági elemzés célja, hogy adatok és mutatók vizsgálatával feltárja a gazdasági folyamatok működését, 
+                                hatásait és kockázatait. A cél megismerni azokat a kulcsfogalmakat és módszereket, amelyekkel a pénzügyi 
+                                döntések megalapozhatók.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="kriminologia" name="kriminologia" value="1" {% if formdata is defined and formdata.kriminologia %}checked{% endif %}>
+                                <label for="kriminologia">Kriminológia</label>
+                            </div>
+                            <p class="topic-description">
+                                A kriminológia a bűnözés okainak, mintázatainak és megelőzési lehetőségeinek tudományos vizsgálata. 
+                                A ebben a témában a felhasználó betekintést kap a bűnüldözés eszköztárába, a bizonyítékok elemzésébe és a 
+                                profilalkotás módszertanába annak fogalmainak megismerésével.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="genetika" name="genetika" value="1" {% if formdata is defined and formdata.genetika %}checked{% endif %}>
+                                <label for="genetika">Genetika</label>
+                            </div>
+                            <p class="topic-description">
+                                A genetika az élőlények öröklődő tulajdonságait meghatározó gének és DNS-szerkezet vizsgálatával foglalkozik. 
+                                A tmémában megismerhetjük azokat az alapvető fogalmakat és mechanizmusokat, amelyek az öröklődés és a genetikai 
+                                sokféleség hátterében állnak.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="meteorologia" name="meteorologia" value="1" {% if formdata is defined and formdata.meteorologia %}checked{% endif %}>
+                                <label for="meteorologia">Meteorológia</label>
+                            </div>
+                            <p class="topic-description">
+                                A meteorológia több mint annak megjósolása mikor lesz eső. Valójában sokkal érdekesebb rétegei vannak úgy mint a légköri jelenségek, 
+                                amely az időjárás és éghajlat megértését szolgálja. Ebben a témában a légköri folyamatok leírásához 
+                                szükséges alapfogalmakat és összefüggéseket ismerhetjük meg.
+                            </p>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="adatbanyaszat" name="adatbanyaszat" value="1" {% if formdata is defined and formdata.adatbanyaszat %}checked{% endif %}>
+                                <label for="adatbanyaszat">Adatbányászat</label>
+                            </div>
+                            <p class="topic-description">
+                                Az adatbányászat célja a nagy adathalmazokban rejlő mintázatok és összefüggések feltárása fejlett algoritmusok 
+                                segítségével. A téma keretei között megismerhetjük a modern adatelemzés kulcsfogalmait és a gyakorlati alkalmazásukat.
+                            </p>
+                        </div>
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <input type="checkbox" id="urkutatas" name="urkutatas" value="1" {% if formdata is defined and formdata.urkutatas %}checked{% endif %}>
+                                <label for="urkutatas">Űrkutatás</label>
+                            </div>
+                            <p class="topic-description">
+                                Az űrkutatás világa a kozmosz titkainak felfedezésére irányul, ahol a csillagászat, az űrhajózás és a bolygókutatás 
+                                kulcsszerepet játszanak. Itt megismerhetjük a Földön kívüli élet keresését, az űrkutató műholdak működését, valamint a 
+                                fekete lyukak és exobolygók rejtelmeit. A tanulás során olyan szakszavakat ismerhetünk meg, amelyek az űr felfedezésének 
+                                határain belépve segítenek megérteni a világegyetem működését.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Regisztráció</button>
+        </form>
+    </div>
+
+    <script>
+        // Neptun kód validáció
+        document.getElementById('neptun_kod').addEventListener('input', function() {
+            const neptun = this.value;
+            const errorDiv = document.getElementById('neptun_error');
+            
+            if (neptun.length > 0 && neptun.length !== 6) {
+                errorDiv.textContent = 'A Neptun kódnak 6 karakter hosszúnak kell lennie!';
+            } else {
+                errorDiv.textContent = '';
+            }
+        });
+
+        // Életkor validáció
+        document.getElementById('eletkor').addEventListener('input', function() {
+            const eletkor = parseInt(this.value);
+            const errorDiv = document.getElementById('eletkor_error');
+            
+            if (eletkor < 16 || eletkor > 100) {
+                errorDiv.textContent = 'Az életkornak 16-100 között kell lennie!';
+            } else {
+                errorDiv.textContent = '';
+            }
+        });
+
+        // Form validáció
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const neptun = document.getElementById('neptun_kod').value;
+            const eletkor = parseInt(document.getElementById('eletkor').value);
+            
+            if (neptun.length > 0 && neptun.length !== 6) {
+                e.preventDefault();
+                alert('A Neptun kódnak 6 karakter hosszúnak kell lennie!');
+                return;
+            }
+            
+            if (eletkor < 16 || eletkor > 100) {
+                e.preventDefault();
+                alert('Az életkornak 16-100 között kell lennie!');
+                return;
+            }
+        });
+
+        function validateRegCode() {
+            const kodInput = document.getElementById('regisztracios_kod');
+            const kod = kodInput.value.trim();
+            const errorDiv = document.getElementById('regisztracios_kod_error');
+            if (!kod) {
+                errorDiv.textContent = '';
+                kodInput.style.backgroundColor = '';
+                return;
+            }
+            fetch('/validate_regcode', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({regkod: kod})
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.valid) {
+                    errorDiv.textContent = '';
+                    kodInput.style.backgroundColor = '#d4edda'; // halványzöld
+                } else {
+                    errorDiv.textContent = data.message;
+                    kodInput.style.backgroundColor = '#f8d7da'; // halványpiros
+                }
+            })
+            .catch(() => {
+                errorDiv.textContent = 'Hálózati hiba a kód ellenőrzésekor!';
+                kodInput.style.backgroundColor = '#f8d7da';
+            });
+        }
+    </script>
+</body>
+</html>

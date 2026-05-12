@@ -1,0 +1,269 @@
+{
+  "szokeszlet_nev": "Adatbányászat Témakör",
+  "szavak": [
+    {
+      "idegen_szo": "Feature engineering",
+      "jelentes1": "jellemzők előállítása",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A nyers adatokból releváns jellemzők kiválasztása vagy létrehozása a modellek teljesítményének javítása érdekében.",
+      "szoveg_kontextus": "A feature engineering kulcsfontosságú lépés a hatékony prediktív modellezésben."
+    },
+    {
+      "idegen_szo": "Overfitting",
+      "jelentes1": "túlilleszkedés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Amikor a modell túlzottan a tanítóadatokra igazodik, így gyengén teljesít új adatokon.",
+      "szoveg_kontextus": "A túl sok paraméter használata overfittinghez vezethet."
+    },
+    {
+      "idegen_szo": "Underfitting",
+      "jelentes1": "alulilleszkedés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Amikor a modell túl egyszerű, így nem képes megragadni az adatok összetettségét.",
+      "szoveg_kontextus": "Az underfitting gyakran rossz predikciós teljesítményt eredményez."
+    },
+    {
+      "idegen_szo": "Support Vector Machine",
+      "jelentes1": "támasztóvektor-gép",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Felügyelt tanulási algoritmus, amely a legjobb elválasztó határvonalat keresi az adatok között.",
+      "szoveg_kontextus": "A support vector machine hatékonyan kezeli a magas dimenziós adatokat."
+    },
+    {
+      "idegen_szo": "K-means clustering",
+      "jelentes1": "K-közép klaszterezés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Középpont-alapú klaszterezési algoritmus, amely a hasonló adatpontokat csoportosítja.",
+      "szoveg_kontextus": "A k-means clustering egyszerű és hatékony módszer nagy adathalmazokra."
+    },
+    {
+      "idegen_szo": "Hierarchical clustering",
+      "jelentes1": "hierarchikus klaszterezés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Klaszterezési módszer, amely fastruktúrában ábrázolja az adatcsoportosulásokat.",
+      "szoveg_kontextus": "A hierarchical clustering lehetővé teszi a több szintű klaszterelemzést."
+    },
+    {
+      "idegen_szo": "Cross-validation",
+      "jelentes1": "keresztvalidáció",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Módszer a modell teljesítményének megbízható értékelésére adatok felosztásával.",
+      "szoveg_kontextus": "A cross-validation csökkenti a túlilleszkedés kockázatát."
+    },
+    {
+      "idegen_szo": "Random forest",
+      "jelentes1": "véletlen erdő",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Több döntési fát kombináló gépi tanulási módszer a pontosabb előrejelzés érdekében.",
+      "szoveg_kontextus": "A random forest jól teljesít nemlineáris adatok esetén."
+    },
+    {
+      "idegen_szo": "Gradient boosting",
+      "jelentes1": "gradiensnöveléses módszer",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Iteratív modellépítési technika, amely minden lépésben javítja az előző modellt.",
+      "szoveg_kontextus": "A gradient boosting erős prediktív teljesítményt nyújt."
+    },
+    {
+      "idegen_szo": "Imbalanced dataset",
+      "jelentes1": "kiegyensúlyozatlan adathalmaz",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan adathalmaz, ahol az osztályok aránya jelentősen eltér.",
+      "szoveg_kontextus": "Az imbalanced dataset torzíthatja a modell tanulását."
+    },
+    {
+      "idegen_szo": "Outlier detection",
+      "jelentes1": "szélsőérték-felismerés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Szokatlan adatpontok azonosítása, amelyek eltérnek a többitől.",
+      "szoveg_kontextus": "Az outlier detection segít kiszűrni a hibás adatokat."
+    },
+    {
+      "idegen_szo": "Data normalization",
+      "jelentes1": "adatnormalizálás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Az adatok skálázása meghatározott tartományba a konzisztencia érdekében.",
+      "szoveg_kontextus": "A data normalization javítja a gépi tanulási algoritmusok stabilitását."
+    },
+    {
+      "idegen_szo": "Clustering",
+      "jelentes1": "adatcsoportosítás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Adatok olyan csoportokra bontása, amelyek hasonló jellemzőkkel rendelkeznek.",
+      "szoveg_kontextus": "A clustering különböző analízisekhez hasznos."
+    },
+    {
+      "idegen_szo": "Feature extraction",
+      "jelentes1": "jellemzők kinyerése",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Adathalmazból releváns tulajdonságok kiválasztása elemzéshez.",
+      "szoveg_kontextus": "A feature extraction javítja a gépi tanulási modellek teljesítményét."
+    },
+    {
+      "idegen_szo": "Dimensionality reduction",
+      "jelentes1": "dimenziócsökkentés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "A jellemzők számának csökkentése az adathalmazban információvesztés minimalizálásával.",
+      "szoveg_kontextus": "A PCA egy gyakran használt dimensionality reduction módszer."
+    },
+    {
+      "idegen_szo": "Supervised learning",
+      "jelentes1": "felügyelt tanulás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Tanítóadatokkal ellátott gépi tanulási módszer, ahol a célváltozó ismert.",
+      "szoveg_kontextus": "A supervised learning gyakori az előrejelző modellekben."
+    },
+    {
+      "idegen_szo": "Unsupervised learning",
+      "jelentes1": "felügyelet nélküli tanulás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Olyan algoritmusok, amelyek címkézetlen adatokból keresnek mintázatokat.",
+      "szoveg_kontextus": "Az unsupervised learning hatékony a rejtett struktúrák feltárásában."
+    },
+    {
+      "idegen_szo": "Data preprocessing",
+      "jelentes1": "adat-előfeldolgozás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Adatok tisztítása, normalizálása és átalakítása elemzés előtt.",
+      "szoveg_kontextus": "A data preprocessing javítja a modell pontosságát."
+    },
+    {
+      "idegen_szo": "Classification",
+      "jelentes1": "osztályozás",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Adatok besorolása előre meghatározott kategóriákba.",
+      "szoveg_kontextus": "A classification algoritmusokat gyakran használják e-mail spam szűrésre."
+    },
+    {
+      "idegen_szo": "Regression analysis",
+      "jelentes1": "regressziós elemzés",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Kapcsolat vizsgálata függő és független változók között.",
+      "szoveg_kontextus": "A regression analysis előrejelzi az értékek jövőbeli alakulását."
+    },
+    {
+      "idegen_szo": "Neural network",
+      "jelentes1": "neurális hálózat",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Biológiai idegrendszert utánzó algoritmusok az összetett mintázatok felismerésére.",
+      "szoveg_kontextus": "A neural network mélytanulás alapját képezi."
+    },
+    {
+      "idegen_szo": "Data warehouse",
+      "jelentes1": "adattárház",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Nagy adathalmazokat tároló rendszer, amely támogatja az elemzéseket.",
+      "szoveg_kontextus": "A data warehouse központosítja a szervezeti adatokat."
+    },
+    {
+      "idegen_szo": "Text mining",
+      "jelentes1": "szövegbányászat",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Szöveges adatok elemzése mintázatok és információk kinyerésére.",
+      "szoveg_kontextus": "A text mining gyakori a közösségi média elemzésben."
+    },
+    {
+      "idegen_szo": "Apriori algorithm",
+      "jelentes1": "Apriori algoritmus",
+      "jelentes2": "",
+      "jelentes3": "",
+      "jelentes4": "",
+      "jelentes5": "",
+      "fonetika": "",
+      "leiras": "Gyakran együtt előforduló elemek felderítésére használt algoritmus.",
+      "szoveg_kontextus": "Az Apriori algorithm a kosárelemzés alapját képezi."
+    }
+	]
+}

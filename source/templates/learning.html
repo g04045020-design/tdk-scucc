@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanulás - Szó és Fogalom Tanuló Környezet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="learning-page">
+    <div class="container">
+        <!-- Breadcrumb navigáció -->
+        <div class="breadcrumb">
+            <a href="/">🏠 Főoldal</a>
+            <span class="separator">/</span>
+            <a href="/dashboard">Dashboard</a>
+            <span class="separator">/</span>
+            <span>Idegenszavak tanulása</span>
+        </div>
+        
+        <div class="header">
+            <h1>🎯 Idegenszavak tanulása</h1>
+            <div class="user-info">
+                <div class="user-name">{{ user_name }}</div>
+                <div class="user-email">{{ user_email }}</div>
+                <a href="/logout" class="logout-btn">Kijelentkezés</a>
+            </div>
+        </div>
+        
+        <h2>1. Tanulási módszer kiválasztása</h2>
+        <div id="method-list">
+            <button class="method-btn" data-method="simple_list">Egyszerű listázás</button>
+            <button class="method-btn" data-method="spaced_repetition">Spaced Repetition</button>
+        </div>
+        <h2>2. Szókészletek kiválasztása</h2>
+        <div id="vocab-list">
+            {% for szokeszlet in szokeszletek %}
+                <button class="vocab-btn" data-id="{{ szokeszlet[0] }}">
+                    {{ szokeszlet[1] }}
+                    {% if szokeszlet[2] == user_id %}(Saját){% elif not szokeszlet[2] %}(Publikus){% elif user_id in szokeszlet[2].split(',') or szokeszlet[2].startswith("/") %}(Megosztott){% endif %}
+                </button>
+            {% endfor %}
+        </div>
+        <h2>3. Pont intervallum</h2>
+        <div id="points-filter">
+            <label>
+                Tól: <input type="number" id="minPoints" placeholder="min" />
+            </label>
+            <label>
+                Ig: <input type="number" id="maxPoints" placeholder="max" />
+            </label>
+        </div>
+        <button id="start-learning-btn" disabled>Tanulás indítása</button>
+        <div id="learning-workspace"></div>
+    </div>
+    <script>
+        let selectedMethod = null;
+        let selectedVocabs = [];
+        document.querySelectorAll('.method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedMethod = this.getAttribute('data-method');
+                updateStartBtn();
+            });
+        });
+        document.querySelectorAll('.vocab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                if (selectedVocabs.includes(id)) {
+                    selectedVocabs = selectedVocabs.filter(x => x !== id);
+                    this.classList.remove('selected');
+                } else {
+                    selectedVocabs.push(id);
+                    this.classList.add('selected');
+                }
+                updateStartBtn();
+            });
+        });
+        function updateStartBtn() {
+            const btn = document.getElementById('start-learning-btn');
+            btn.disabled = !(selectedMethod && selectedVocabs.length > 0);
+        }
+        document.getElementById('start-learning-btn').addEventListener('click', function() {
+            if (!selectedMethod || selectedVocabs.length === 0) return;
+            const minPoints = document.getElementById('minPoints').value || null;
+            const maxPoints = document.getElementById('maxPoints').value || null;
+            fetch('/start_learning', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    method: selectedMethod, 
+                    vocabs: selectedVocabs,
+                    minPoints: minPoints,
+                    maxPoints: maxPoints
+                })
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                document.getElementById('learning-workspace').innerHTML = data.html;
+                if (data.session_id) {
+                    window.learningSessionId = data.session_id;
+                }
+            });
+        });
+        // Event delegation a "Tovább" gombhoz - mostantól a body-ra!
+        document.body.addEventListener('click', function(e) {
+            if (e.target && e.target.id === 'next-btn') {
+                fetch('/learning_next', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: window.learningSessionId })
+                })
+                .then(resp => resp.json())
+                .then(data => {
+                    document.getElementById('learning-workspace').innerHTML = data.html;
+                    if (data.session_id) {
+                        window.learningSessionId = data.session_id;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
